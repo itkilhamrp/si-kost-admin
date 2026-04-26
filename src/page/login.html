@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initLogin } from "/js/pages/login.js";
+    document.addEventListener("DOMContentLoaded", initLogin);
+  </script>
+  <title>SI-KOST</title>
+</head>
+<body>
+  <div class="login-page">
+
+    <div class="login-logo">🏘️</div>
+    <h1 class="login-title">SI-KOST</h1>
+    <p class="login-subtitle">Sistem Informasi Rumah Kos</p>
+
+    <!-- Form Login (muncul setelah logout, akun sudah ada) -->
+    <div id="form-login" class="login-card hidden">
+      <h2 style="font-size:1.1rem;margin-bottom:var(--sp-4);text-align:center">Selamat Datang</h2>
+      <div class="input-group">
+        <label for="input-pass-login">Password</label>
+        <input type="password" id="input-pass-login" placeholder="Masukkan password"
+               autocomplete="current-password">
+      </div>
+      <button class="save-btn" id="btn-login">Masuk</button>
+    </div>
+
+    <!-- Form Daftar (muncul pertama kali, belum ada akun) -->
+    <div id="form-daftar" class="login-card hidden">
+      <h2 style="font-size:1.1rem;margin-bottom:var(--sp-4);text-align:center">Buat Akun</h2>
+      <div class="input-group">
+        <label for="input-display-name">Nama Tampilan <span style="color:var(--text-3)">(muncul di beranda)</span></label>
+        <input type="text" id="input-display-name" placeholder="Nama kamu"
+               autocomplete="name">
+      </div>
+      <!-- username tersembunyi, default "owner" -->
+      <input type="hidden" id="input-username" value="owner">
+      <div class="input-group">
+        <label for="input-pass-daftar">Password <span style="color:var(--text-3)">(min. 6 karakter)</span></label>
+        <input type="password" id="input-pass-daftar" placeholder="Buat password"
+               autocomplete="new-password">
+      </div>
+      <button class="save-btn" id="btn-daftar">Buat Akun</button>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+</body>
+</html>

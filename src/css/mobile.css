@@ -1,0 +1,98 @@
+/* mobile.css */
+
+/* Mencegah interaksi default sistem Android pada elemen */
+* {
+    -webkit-touch-callout: none; /* Inilah yang mematikan pop-up URL/Menu di mobile */
+    -webkit-user-select: none;    /* Mencegah seleksi teks */
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Menghilangkan kotak biru saat diklik */
+}
+
+/* Pastikan input masih bisa digunakan */
+input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* ── Portrait kecil (≤479px) ── */
+@media(max-width:479px){
+  .container{
+    padding:var(--sp-2) var(--sp-2);
+    padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 90px);
+  }
+  .container.no-fab{
+    padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px);
+  }
+  .kos-grid,.kamar-grid{gap:10px}
+  .kos-info{padding:8px 8px 10px}
+  .kos-nama,.kamar-no-text{font-size:.79rem}
+  .kos-alamat{font-size:.66rem}
+  .kamar-harga-text{font-size:.72rem}
+  .kih-harga-big{font-size:1.1rem}
+  .rb-stats{gap:var(--sp-1)}
+  .rb-stat{padding:6px 8px;min-width:46px}
+  .rb-stat-val{font-size:1rem}
+  .kontak-grid{grid-template-columns:1fr}
+  .kontak-avatar{width:40px;height:40px}
+  .kontak-nama{font-size:.82rem}
+}
+
+/* ── Landscape smartphone (≤899px, orientasi horizontal) ──
+   Paksa safe area kiri/kanan dengan nilai yang cukup besar
+   sebagai fallback jika env() tidak ter-expose oleh WebView.
+   Nilai 32px cukup untuk cover notch punchhole maupun waterdrop,
+   dan 48px untuk sisi yang ada navigation bar 3 tombol.
+── */
+@media(max-width:899px) and (orientation:landscape){
+
+  /* Padding horizontal minimum — paksa menghindari notch & nav bar */
+  .app-header{
+    padding-left:  max(var(--sp-4), env(safe-area-inset-left,  32px), 32px);
+    padding-right: max(var(--sp-4), env(safe-area-inset-right, 32px), 32px);
+  }
+
+  .container,
+  .container.no-fab{
+    padding-left:  max(var(--sp-2), env(safe-area-inset-left,  32px), 32px);
+    padding-right: max(var(--sp-2), env(safe-area-inset-right, 32px), 32px);
+  }
+
+  .search-bar-wrap{
+    padding-left:  max(var(--sp-3), env(safe-area-inset-left,  32px), 32px);
+    padding-right: max(var(--sp-3), env(safe-area-inset-right, 32px), 32px);
+  }
+
+  .kontak-filter-wrap{
+    padding-left:  max(0px, env(safe-area-inset-left,  32px), 32px);
+    padding-right: max(0px, env(safe-area-inset-right, 32px), 32px);
+  }
+
+  .bottom-nav{
+    padding-left:  max(0px, env(safe-area-inset-left,  48px), 48px);
+    padding-right: max(0px, env(safe-area-inset-right, 48px), 48px);
+  }
+
+  .fab{
+    right: max(16px, env(safe-area-inset-right, 48px), 48px);
+  }
+
+  .toast{
+    /* Toast tetap di tengah, tidak perlu safe area */
+    max-width: calc(100vw
+      - max(32px, env(safe-area-inset-left,  32px), 32px)
+      - max(32px, env(safe-area-inset-right, 32px), 32px)
+      - 32px
+    );
+  }
+
+  /* Dialog & modal: beri margin kiri kanan */
+  .modal-overlay{
+    padding-left:  max(var(--sp-4), env(safe-area-inset-left,  32px), 32px);
+    padding-right: max(var(--sp-4), env(safe-area-inset-right, 32px), 32px);
+  }
+  .dialog-overlay{
+    padding-left:  max(0px, env(safe-area-inset-left,  24px), 24px);
+    padding-right: max(0px, env(safe-area-inset-right, 24px), 24px);
+  }
+}

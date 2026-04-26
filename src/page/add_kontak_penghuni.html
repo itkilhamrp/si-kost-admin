@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initAddKontak } from "/js/pages/add-kontak.js";
+    document.addEventListener("DOMContentLoaded", initAddKontak);
+  </script>
+  <title>Tambah Kontak</title>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="/page/kontak_penghuni.html" class="back-btn" id="btn-back">←</a>
+  <div class="header-title"><h1>➕ Tambah Kontak</h1></div>
+</header>
+
+<div class="container no-fab">
+  <div class="modern-form">
+
+    <!-- Foto Profil -->
+    <div class="input-group">
+      <label>Foto Profil <span class="label-opt">(opsional)</span></label>
+      <div id="image-picker-area-profil" class="image-picker-area avatar-picker" role="button" tabindex="0">
+        <img id="preview-profil" src="" alt="" class="hidden">
+        <div id="picker-hint-profil" class="avatar-picker-hint">
+          <span class="avatar-picker-icon">👤</span>
+          <p>Tap untuk pilih foto profil</p>
+        </div>
+        <input type="file" id="input-profil" accept="image/*" class="hidden">
+      </div>
+    </div>
+
+    <!-- Nama -->
+    <div class="input-group">
+      <label>Nama Lengkap <span class="req">*</span></label>
+      <input type="text" id="nama-kontak" placeholder="Nama lengkap penghuni" autocomplete="name">
+    </div>
+
+    <!-- Jenis Kelamin -->
+    <div class="input-group">
+      <label>Jenis Kelamin <span class="req">*</span></label>
+      <div class="jk-toggle-group">
+        <button type="button" class="jk-btn" data-val="Pria">👨 Pria</button>
+        <button type="button" class="jk-btn" data-val="Wanita">👩 Wanita</button>
+      </div>
+    </div>
+
+    <!-- No HP -->
+    <div class="input-group">
+      <label>Nomor HP <span class="label-opt">(opsional)</span></label>
+      <input type="tel" id="no-hp" placeholder="08xx-xxxx-xxxx" autocomplete="tel">
+    </div>
+
+    <!-- Foto KTP -->
+    <div class="input-group">
+      <label>Foto Kartu Identitas <span class="label-opt">(opsional)</span></label>
+      <div id="image-picker-area-ktp" class="image-picker-area" role="button" tabindex="0">
+        <img id="preview-ktp" src="" alt="" class="hidden">
+        <div id="picker-hint-ktp" class="picker-hint-inner">
+          <span style="font-size:1.5rem">🪪</span>
+          <p>Tap untuk pilih foto KTP / KK</p>
+        </div>
+        <input type="file" id="input-ktp" accept="image/*" class="hidden">
+      </div>
+    </div>
+
+    <!-- Deskripsi -->
+    <div class="input-group">
+      <label>Deskripsi / Catatan <span class="label-opt">(opsional)</span></label>
+      <textarea id="deskripsi" rows="3" placeholder="Catatan tambahan tentang penghuni..."></textarea>
+    </div>
+
+    <button class="save-btn" id="btn-simpan-kontak">💾 Simpan Kontak</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+</body>
+</html>

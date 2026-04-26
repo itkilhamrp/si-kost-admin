@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initEditPenghuniKamar } from "/js/pages/edit-penghuni-kamar.js";
+    document.addEventListener("DOMContentLoaded", initEditPenghuniKamar);
+  </script>
+  <title>Edit Penghuni</title>
+</head>
+<body>
+<header class="app-header">
+  <a href="#" class="back-btn" id="btn-back">←</a>
+  <div class="header-title"><h1>Edit Penghuni</h1></div>
+</header>
+
+<div class="container no-fab">
+  <div class="modern-form">
+    <!-- Info kontak (read-only) -->
+    <div id="kontak-info" class="info-card" style="margin-bottom:var(--sp-4)"></div>
+
+    <div class="input-group">
+      <label>Tanggal Masuk <span class="req">*</span></label>
+      <button type="button" class="date-trigger" id="tgl-masuk-btn">
+        <span id="tgl-masuk-val">Pilih tanggal...</span>
+        <span class="date-trigger-icon">📅</span>
+      </button>
+    </div>
+
+    <div class="input-group">
+      <label>Tanggal Keluar (Estimasi) <span style="color:var(--text-3)">(opsional)</span></label>
+      <button type="button" class="date-trigger" id="tgl-keluar-btn">
+        <span id="tgl-keluar-val">Pilih tanggal...</span>
+        <span class="date-trigger-icon">📅</span>
+      </button>
+    </div>
+
+    <button class="save-btn" id="btn-simpan">Simpan Perubahan</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* ════════════════════════════════════════════════
+   SI-KOST v2 — styles.css
+   GERBANG UTAMA: tokens, reset, keyframes
+   + @import semua partial CSS
+════════════════════════════════════════════════ */
+
+/* ── Tokens Light ── */
+:root {
+  --green:      #16a34a;
+  --green-dk:   #15803d;
+  --green-lt:   #f0fdf4;
+  --green-mid:  #dcfce7;
+  --bg:         #f1f5f9;
+  --surface:    #ffffff;
+  --border:     #e2e8f0;
+  --text:       #0f172a;
+  --text-2:     #64748b;
+  --text-3:     #94a3b8;
+  --danger:     #dc2626;
+  --danger-lt:  #fef2f2;
+  --danger-mid: #fee2e2;
+  --amber:      #d97706;
+  --amber-lt:   #fffbeb;
+  --amber-mid:  #fef3c7;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;--r-full:9999px;
+  --dur:120ms;
+  --nav-h:60px;
+  --hdr-h:56px;
+}
+
+/* ── Tokens Dark ── */
+[data-theme="dark"] {
+  --green:#22c55e;--green-dk:#16a34a;--green-lt:#052e16;--green-mid:#14532d;
+  --bg:#0a0a0a;--surface:#171717;--border:#262626;
+  --text:#f1f5f9;--text-2:#94a3b8;--text-3:#475569;
+  --danger:#f87171;--danger-lt:#1c0a0a;--danger-mid:#2d0f0f;
+  --amber:#fbbf24;--amber-lt:#1c1500;--amber-mid:#2d2200;
+}
+
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{
+  background:var(--green);
+  -webkit-text-size-adjust:100%;
+  /* Pastikan konten mengisi seluruh layar termasuk di belakang notch */
+  height:100%;
+}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:14px;line-height:1.5;
+  background:var(--bg);color:var(--text);
+  min-height:100dvh;
+  /* Safe area top — status bar & notch */
+  padding-top:env(safe-area-inset-top,0px);
+  -webkit-tap-highlight-color:transparent;
+  /* Mencegah rubber-band scroll yang aneh di WebView */
+  overscroll-behavior:none;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:inherit;font-size:inherit}
+img{display:block;max-width:100%}
+
+/* ── Keyframes ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes slideUp{from{transform:translateY(110%);opacity:.5}to{transform:translateY(0);opacity:1}}
+
+/* ════════════════════════════════════════════════
+   PARTIAL IMPORTS — urutan penting!
+   (digantikan oleh build-css.cjs saat bundle)
+════════════════════════════════════════════════ */
+@import "/css/_base.css";
+@import "/css/_cards.css";
+@import "/css/_components.css";
+@import "/css/_pages.css";

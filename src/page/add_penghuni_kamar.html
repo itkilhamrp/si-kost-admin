@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initAddPenghuniKamar } from "/js/pages/add-penghuni-kamar.js";
+    document.addEventListener("DOMContentLoaded", initAddPenghuniKamar);
+  </script>
+  <title>Tambah Penghuni</title>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="#" class="back-btn" id="btn-back">←</a>
+  <div class="header-title">
+    <h1>➕ Tambah Penghuni</h1>
+    <p class="header-subtitle" id="sub-kamar"></p>
+  </div>
+</header>
+
+<div class="container no-fab">
+
+  <!-- Info / Pilih Kamar -->
+  <div class="form-section-label">🚪 Kamar</div>
+  <div id="kamar-info-banner" class="pick-banner"></div>
+
+  <!-- Pilih Kontak -->
+  <div class="form-section-label" style="margin-top:var(--sp-4)">👤 Penghuni</div>
+
+  <!-- Kontak terpilih -->
+  <div id="selected-kontak" class="selected-item-card hidden"></div>
+
+  <!-- Search kontak -->
+  <div id="kontak-search-wrap">
+    <div class="search-bar-wrap" style="position:relative;top:auto;background:var(--bg);border:none;padding:0;margin-bottom:var(--sp-2)">
+      <div class="search-bar-inner">
+        <span class="si">🔍</span>
+        <input type="search" id="q-kontak" placeholder="Cari nama atau nomor HP..." autocomplete="off">
+        <button class="clear-btn hidden" id="q-kontak-clear">✕</button>
+      </div>
+    </div>
+    <div id="kontak-list-pick" class="pick-list"></div>
+    <button type="button" id="btn-tambah-kontak-baru" class="btn-secondary" style="width:100%;margin-top:var(--sp-2)">
+      ＋ Buat Kontak Baru
+    </button>
+  </div>
+
+  <!-- Tanggal Masuk -->
+  <div class="input-group" style="margin-top:var(--sp-4)">
+    <label>Tanggal Masuk <span class="req">*</span></label>
+    <button type="button" class="date-trigger has-val" id="tgl-masuk-btn">
+      <span class="dt-icon">📅</span>
+      <span class="dt-val" id="tgl-masuk-val">Pilih tanggal...</span>
+      <span class="dt-arrow">›</span>
+    </button>
+  </div>
+
+  <!-- Tanggal Keluar -->
+  <div class="input-group">
+    <label>Tanggal Keluar <span class="label-opt">(estimasi, opsional)</span></label>
+    <button type="button" class="date-trigger" id="tgl-keluar-btn">
+      <span class="dt-icon">📅</span>
+      <span class="dt-val" id="tgl-keluar-val">Pilih tanggal...</span>
+      <span class="dt-arrow">›</span>
+    </button>
+  </div>
+
+  <button class="save-btn" id="btn-simpan-penghuni" disabled>Tambah Penghuni</button>
+</div>
+
+<div id="toast" class="toast"></div>
+</body>
+</html>

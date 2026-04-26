@@ -1,0 +1,357 @@
+/* ════════════════════════════════════════════════
+   _cards.css — Kos Cards, Kamar Cards, Rumah Banner,
+                Kontak Cards, Info Cards
+════════════════════════════════════════════════ */
+
+/* ── Kos Grid & Cards ── */
+.kos-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.kos-card{
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-lg);
+  overflow:hidden;cursor:pointer;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  animation:fadeUp .15s both;
+  transition:box-shadow .2s,border-color .2s,transform .15s;
+  display:flex;flex-direction:column;min-width:0;
+}
+@media(hover:hover){
+  .kos-card:hover{border-color:var(--green);box-shadow:0 6px 24px rgba(22,163,74,.14);transform:translateY(-2px)}
+}
+.kos-card:active{transform:scale(.972);opacity:.85}
+.kos-card.is-pinned{border-left:3px solid var(--green)}
+
+.kos-thumb{
+  width:100%;aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--green-lt) 0%,var(--green-mid) 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;flex-shrink:0;
+}
+.kos-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.kos-thumb-emoji{font-size:2.4rem;line-height:1;user-select:none}
+.kos-pin-badge{
+  position:absolute;top:6px;left:6px;
+  background:rgba(22,163,74,.88);color:#fff;
+  font-size:.55rem;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.kos-info{
+  padding:10px 10px 12px;
+  display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;
+}
+.kos-nama{
+  font-size:.84rem;font-weight:700;color:var(--text);
+  line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.kos-alamat{
+  font-size:.69rem;color:var(--text-2);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;
+}
+.kos-footer{margin-top:5px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.kos-kamar-chip{
+  font-size:.63rem;font-weight:600;color:var(--text-3);
+  background:var(--bg);border:1px solid var(--border);
+  padding:2px 7px;border-radius:var(--r-full);white-space:nowrap;
+}
+
+/* ── Kamar Grid & Cards ── */
+.kamar-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.kamar-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;cursor:pointer;
+  animation:fadeUp .15s both;
+  transition:box-shadow .2s,border-color .2s,transform .15s;
+  display:flex;flex-direction:column;min-width:0;
+}
+@media(hover:hover){
+  .kamar-card:hover{border-color:var(--green);box-shadow:0 6px 24px rgba(22,163,74,.14);transform:translateY(-2px)}
+}
+.kamar-card:active{transform:scale(.972);opacity:.85}
+
+.kamar-thumb{
+  width:100%;aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--bg) 0%,var(--border) 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;flex-shrink:0;
+}
+.kamar-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.kamar-thumb-emoji{font-size:2rem;color:var(--text-3);line-height:1}
+
+.kamar-dot{
+  position:absolute;top:7px;left:7px;
+  width:10px;height:10px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:0 1px 4px rgba(0,0,0,.25);
+}
+.kamar-dot.kosong{background:#22c55e}
+.kamar-dot.terisi{background:#ef4444}
+
+.kamar-info{padding:10px;display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.kamar-no-text{font-size:.84rem;font-weight:700;color:var(--text);line-height:1.2}
+.kamar-harga-text{font-size:.78rem;font-weight:700;color:var(--green-dk)}
+[data-theme="dark"] .kamar-harga-text{color:var(--green)}
+.kamar-harga-text span{font-size:.63rem;font-weight:400;color:var(--text-3)}
+.kamar-badge-row{display:flex;align-items:center;gap:4px;margin-top:2px;flex-wrap:wrap}
+.kamar-chips{display:flex;flex-wrap:wrap;gap:3px;padding:0 10px 10px}
+.unit-chip{
+  font-size:.58rem;font-weight:600;
+  background:var(--green-lt);color:var(--green-dk);
+  border:1px solid var(--green-mid);
+  padding:2px 6px;border-radius:var(--r-full);white-space:nowrap;
+}
+[data-theme="dark"] .unit-chip{color:var(--green)}
+
+/* ── Rumah Banner ── */
+.rumah-banner{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+  margin-bottom:var(--sp-3);
+  display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center;
+}
+.rb-info{flex:1;min-width:140px}
+.rb-nama{font-weight:700;font-size:.95rem;line-height:1.3}
+.rb-alamat{font-size:.76rem;color:var(--text-2);margin-top:3px;line-height:1.4}
+.rb-stats{display:flex;gap:var(--sp-2);flex-shrink:0}
+.rb-stat{
+  display:flex;flex-direction:column;align-items:center;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--r-md);padding:7px 12px;min-width:52px;
+}
+.rb-stat-val{font-size:1.15rem;font-weight:800;line-height:1}
+.rb-stat-label{font-size:.58rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.rb-stat.green .rb-stat-val{color:var(--green-dk)}
+.rb-stat.red   .rb-stat-val{color:var(--danger)}
+.rb-stat.blue  .rb-stat-val{color:#2563eb;font-size:.78rem}
+[data-theme="dark"] .rb-stat.green .rb-stat-val{color:var(--green)}
+[data-theme="dark"] .rb-stat.blue  .rb-stat-val{color:#60a5fa}
+
+/* ── Kontak Cards ── */
+.kontak-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--sp-2);
+}
+.kontak-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-3);
+  cursor:pointer;
+  animation:fadeUp .15s both;
+  transition:box-shadow .18s,border-color .18s,transform .12s;
+  min-width:0;
+}
+@media(hover:hover){
+  .kontak-card:hover{border-color:var(--green);box-shadow:0 4px 18px rgba(22,163,74,.12);transform:translateY(-1px)}
+}
+.kontak-card:active{transform:scale(.98);opacity:.88}
+
+.kontak-avatar{
+  flex-shrink:0;width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green-lt),var(--green-mid));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border:2px solid var(--green-mid);
+}
+.kontak-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.kontak-avatar-initials{font-size:1rem;font-weight:700;color:var(--green-dk);line-height:1}
+[data-theme="dark"] .kontak-avatar-initials{color:var(--green)}
+
+.kontak-body{flex:1;min-width:0}
+.kontak-nama{font-size:.875rem;font-weight:700;color:var(--text);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kontak-sub{font-size:.72rem;color:var(--text-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kontak-kamar-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:.65rem;font-weight:600;
+  background:var(--green-lt);color:var(--green-dk);
+  border:1px solid var(--green-mid);
+  padding:2px 8px;border-radius:var(--r-full);
+  margin-top:4px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;
+}
+[data-theme="dark"] .kontak-kamar-badge{color:var(--green)}
+.kontak-kosong-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:.65rem;font-weight:600;
+  background:var(--bg);color:var(--text-3);
+  border:1px solid var(--border);
+  padding:2px 8px;border-radius:var(--r-full);
+  margin-top:4px;
+}
+.kontak-meta{display:flex;align-items:center;gap:var(--sp-2);flex-shrink:0}
+.kontak-jk-badge{
+  font-size:.65rem;font-weight:700;
+  padding:3px 8px;border-radius:var(--r-full);
+  flex-shrink:0;
+}
+.kontak-jk-badge.laki{background:#dbeafe;color:#1d4ed8}
+.kontak-jk-badge.perempuan{background:#fce7f3;color:#be185d}
+[data-theme="dark"] .kontak-jk-badge.laki{background:#1e3a5f;color:#60a5fa}
+[data-theme="dark"] .kontak-jk-badge.perempuan{background:#4a1232;color:#f472b6}
+
+/* ── Info Card (penghuni detail) ── */
+.info-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-4);margin-bottom:var(--sp-2);
+}
+.info-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3);margin-bottom:4px}
+.info-card h3{font-size:1.05rem;font-weight:700}
+.info-card p{font-size:.85rem;color:var(--text-2);margin-top:3px}
+.info-actions{display:flex;gap:var(--sp-2);margin-top:var(--sp-3);flex-wrap:wrap}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:var(--r-full);font-size:.67rem;font-weight:700}
+.badge-green{background:var(--green-mid);color:var(--green-dk)}
+.badge-red{background:var(--danger-lt);color:var(--danger)}
+.badge-gray{background:var(--border);color:var(--text-2)}
+.badge-amber{background:var(--amber-mid);color:var(--amber)}
+[data-theme="dark"] .badge-green{color:var(--green)}
+
+/* ── Skeleton ── */
+.skeleton{
+  background:linear-gradient(90deg,var(--border) 25%,var(--bg) 50%,var(--border) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.4s ease-in-out infinite;
+  border-radius:var(--r-sm);
+}
+.skeleton-card{pointer-events:none}
+.skeleton-img{width:100%;aspect-ratio:4/3;border-radius:0}
+.skeleton-line{height:10px;margin:4px 0}
+.w-40{width:40%}.w-50{width:50%}.w-55{width:55%}
+.w-60{width:60%}.w-70{width:70%}.w-80{width:80%}.w-90{width:90%}
+
+/* ════════════════════════════════════════════════
+   KAMAR CARD — tambahan untuk detail kost
+════════════════════════════════════════════════ */
+
+/* Lantai header — span full width di dalam grid */
+.lantai-header{
+  grid-column:1 / -1;
+  font-size:.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-3);
+  padding:var(--sp-1) 0 var(--sp-1);
+  border-bottom:1px solid var(--border);
+  margin-bottom:2px;
+  display:flex;align-items:center;gap:6px;
+}
+.lantai-header::before{
+  content:"";display:block;width:3px;height:14px;
+  background:var(--green);border-radius:2px;flex-shrink:0;
+}
+
+/* Status dot — 3 warna */
+.kamar-dot{
+  position:absolute;top:7px;left:7px;
+  width:11px;height:11px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:0 1px 4px rgba(0,0,0,.25);
+}
+.kamar-dot.kosong  { background:#22c55e }   /* hijau */
+.kamar-dot.terisi  { background:#f59e0b }   /* kuning/amber — terisi sebagian */
+.kamar-dot.penuh   { background:#ef4444 }   /* merah — benar-benar penuh */
+
+/* Kapasitas badge di pojok kanan atas thumb */
+.kamar-kap-badge{
+  position:absolute;top:6px;right:6px;
+  font-size:.6rem;font-weight:700;
+  background:rgba(0,0,0,.55);color:#fff;
+  padding:2px 6px;border-radius:var(--r-full);
+  backdrop-filter:blur(4px);
+  line-height:1.3;
+}
+
+/* Harga stack (normal + diskon) */
+.kamar-harga-stack{
+  display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px;
+}
+.kamar-harga-coret{
+  font-size:.65rem;color:var(--text-3);
+  text-decoration:line-through;font-weight:400;
+}
+.kamar-harga-text.with-diskon{color:var(--danger)}
+.kamar-diskon-pill{
+  font-size:.58rem;font-weight:700;
+  background:var(--danger);color:#fff;
+  padding:1px 5px;border-radius:var(--r-full);
+}
+
+/* ════════════════════════════════════════════════
+   DESKTOP INDEX — Hero layout + enhanced kos cards
+   Hanya berlaku ≥900px, mobile tidak terpengaruh
+════════════════════════════════════════════════ */
+@media(min-width:900px){
+
+  /* Stats bar di atas grid */
+  .desk-stats-bar{
+    display:flex;align-items:center;gap:var(--sp-3);
+    padding:var(--sp-3) 0 var(--sp-4);
+    border-bottom:1px solid var(--border);
+    margin-bottom:var(--sp-4);
+  }
+  .desk-stat-pill{
+    display:flex;align-items:center;gap:var(--sp-2);
+    background:var(--surface);border:1.5px solid var(--border);
+    border-radius:var(--r-full);padding:6px 14px;
+    font-size:.78rem;font-weight:600;color:var(--text-2);
+    transition:border-color var(--dur);
+  }
+  .desk-stat-pill:hover{border-color:var(--green)}
+  .desk-stat-pill .dsp-val{
+    font-size:.95rem;font-weight:800;color:var(--text);
+    margin-left:2px;
+  }
+  .desk-stat-pill.green .dsp-val{color:var(--green-dk)}
+  .desk-stat-pill.amber .dsp-val{color:var(--amber)}
+  [data-theme="dark"] .desk-stat-pill.green .dsp-val{color:var(--green)}
+  .desk-stat-sep{
+    width:1px;height:20px;background:var(--border);flex-shrink:0;
+  }
+  .desk-stat-spacer{flex:1}
+
+  /* Kos card desktop — lebih tinggi, info lebih kaya */
+  .kos-card{
+    border-radius:var(--r-xl);
+    transition:box-shadow .25s,border-color .25s,transform .2s;
+  }
+  .kos-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 36px rgba(22,163,74,.16);
+  }
+  .kos-thumb{
+    aspect-ratio:16/10;
+  }
+  .kos-thumb-emoji{font-size:3rem}
+  .kos-info{padding:14px 14px 16px}
+  .kos-nama{font-size:.95rem}
+  .kos-alamat{font-size:.75rem;margin-top:3px}
+  .kos-footer{margin-top:8px;gap:6px}
+  .kos-kamar-chip{font-size:.68rem;padding:3px 10px}
+
+  /* Pin badge lebih besar */
+  .kos-pin-badge{
+    width:26px;height:26px;font-size:.65rem;top:8px;left:8px;
+  }
+
+  /* Empty state desktop */
+  .desk-empty{
+    grid-column:1/-1;
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;padding:80px var(--sp-4);
+    text-align:center;
+  }
+  .desk-empty-icon{font-size:4rem;margin-bottom:var(--sp-4);opacity:.4}
+  .desk-empty-title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:var(--sp-2)}
+  .desk-empty-sub{font-size:.875rem;color:var(--text-3);line-height:1.6}
+}
+
+@media(min-width:1100px){
+  .kos-thumb{aspect-ratio:3/2}
+}

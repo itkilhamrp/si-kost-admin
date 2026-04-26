@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initPindahKamar } from "/js/pages/pindah-kamar.js";
+    document.addEventListener("DOMContentLoaded", initPindahKamar);
+  </script>
+  <title>Pindah Kamar</title>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="#" class="back-btn" id="btn-back">←</a>
+  <div class="header-title">
+    <h1>🔄 Pindah Kamar</h1>
+    <p class="header-subtitle" id="sub-nama-penghuni"></p>
+  </div>
+</header>
+
+<div class="container no-fab">
+
+  <!-- Info kamar sekarang -->
+  <div class="unit-info-banner" style="margin-bottom:var(--sp-3)">
+    <span class="unit-info-icon">ℹ️</span>
+    <p id="info-kamar-sekarang">Memuat data...</p>
+  </div>
+
+  <!-- Pilih kost -->
+  <div class="form-section-label">🏠 Pilih Kost</div>
+
+  <!-- Search -->
+  <div class="search-bar-wrap" style="position:relative;top:auto;background:var(--bg);border:none;padding:0;margin-bottom:var(--sp-2)">
+    <div class="search-bar-inner">
+      <span class="si">🔍</span>
+      <input type="search" id="q-kost" placeholder="Cari nama kost..." autocomplete="off">
+      <button class="clear-btn hidden" id="q-kost-clear">✕</button>
+    </div>
+  </div>
+
+  <!-- List kost -->
+  <div id="list-kost" class="pick-list"></div>
+
+  <!-- Kamar submenu -->
+  <div id="kamar-submenu" class="hidden" style="margin-top:var(--sp-3)">
+    <div class="form-section-label">🚪 Pilih Kamar</div>
+    <div class="search-bar-wrap" style="position:relative;top:auto;background:var(--bg);border:none;padding:0;margin-bottom:var(--sp-2)">
+      <div class="search-bar-inner">
+        <span class="si">🔍</span>
+        <input type="search" id="q-kamar" placeholder="Cari nomor kamar..." autocomplete="off">
+        <button class="clear-btn hidden" id="q-kamar-clear">✕</button>
+      </div>
+    </div>
+    <div id="list-kamar-tujuan" class="pick-list"></div>
+  </div>
+
+  <!-- Kamar terpilih -->
+  <div id="selected-kamar" class="selected-item-card hidden" style="margin-top:var(--sp-3)"></div>
+
+  <button class="save-btn" id="btn-pindah" disabled style="margin-top:var(--sp-4)">
+    🔄 Pindahkan Sekarang
+  </button>
+
+</div>
+
+<!-- Dialog konfirmasi -->
+<div id="dialog-overlay" class="dialog-overlay">
+  <div class="dialog-sheet">
+    <div class="dialog-handle"></div>
+    <div id="dialog-content"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+</body>
+</html>

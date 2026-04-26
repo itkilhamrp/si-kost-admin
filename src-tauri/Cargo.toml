@@ -1,0 +1,45 @@
+[package]
+name = "si-librekost"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+
+[lib]
+name = "si_librekost_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+bcrypt    = "0.15"
+chrono    = { version = "0.4", features = ["serde"] }
+base64     = "0.22"
+tauri-plugin-log = "2.8.0" # Sesuaikan dengan versi tauri v2 Anda
+
+# Optimasi: Mematikan default-features pada crate image jika tidak semua dibutuhkan
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "gif", "webp", "bmp"] }
+
+# --- TAMBAHKAN BAGIAN INI UNTUK OPTIMASI PRODUCTION ---
+[profile.release]
+# Mengoptimalkan ukuran binary (penting untuk distribusi)
+opt-level = "z" 
+
+# Optimasi lintas seluruh crate (dependensi)
+lto = true 
+
+# Meningkatkan optimasi dengan membatasi proses paralel saat kompilasi
+codegen-units = 1 
+
+# Mengurangi overhead error handling yang tidak perlu di user-end
+panic = "abort" 
+
+# Menghapus simbol debug (Bisa mengecilkan file hingga 50% lebih)
+strip = true
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initIndex }      from "/js/pages/index.js";
+    import { initSidebarNav } from "/js/ui/sidebar-nav.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initIndex();
+      initSidebarNav();
+    });
+  </script>
+  <title>SI-KOST</title>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-title-group">
+    <h1>🏘️ SI-KOST</h1>
+    <p id="salam-user" class="salam-user"></p>
+  </div>
+  <span id="live-time"></span>
+</header>
+
+<div class="search-bar-wrap">
+  <div class="search-bar-inner">
+    <span class="si">🔍</span>
+    <input type="search" id="q-rumah" placeholder="Cari nama atau alamat kos..." autocomplete="off">
+    <button class="clear-btn hidden" id="q-rumah-clear">✕</button>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Stats bar — hanya tampil di desktop via CSS -->
+  <div id="desk-stats-bar" class="desk-stats-bar"></div>
+
+  <div id="list-rumah" class="kos-grid"></div>
+</div>
+
+<!-- Desktop tambah button — hanya tampil di desktop -->
+<div id="desktop-tambah-rumah" class="desktop-tambah-rumah hidden">
+  <a href="/page/add_kost.html" class="desktop-tambah-btn" title="Tambah Rumah Kos">
+    <span class="dtb-icon">➕</span>
+    <span class="dtb-label">Tambah Rumah Kos</span>
+  </a>
+</div>
+
+<nav class="desk-sidebar-nav" role="navigation" aria-label="Navigasi Desktop">
+  <button class="dsn-toggle" id="dsn-toggle-btn"
+          data-tooltip="Buka Sidebar  Ctrl+\\"
+          aria-label="Toggle sidebar">
+    <div class="dsn-toggle-icon"><span></span><span></span><span></span></div>
+  </button>
+  <div class="dsn-items">
+    <a class="dsn-item" href="/index.html">
+      <span class="dsn-item-icon">🏠</span>
+      <span class="dsn-item-label">Kost</span>
+    </a>
+    <a class="dsn-item" href="/page/keuangan.html">
+      <span class="dsn-item-icon">💰</span>
+      <span class="dsn-item-label">Keuangan</span>
+    </a>
+    <a class="dsn-item" href="/page/kontak_penghuni.html">
+      <span class="dsn-item-icon">👥</span>
+      <span class="dsn-item-label">Kontak</span>
+    </a>
+    <a class="dsn-item" href="/page/settings.html">
+      <span class="dsn-item-icon">⚙️</span>
+      <span class="dsn-item-label">Pengaturan</span>
+    </a>
+  </div>
+</nav>
+
+<nav class="bottom-nav">
+  <a class="nav-item active" href="/index.html"><span class="nav-icon">🏠</span><span>Kost</span></a>
+  <a class="nav-item" href="/page/keuangan.html"><span class="nav-icon">💰</span><span>Keuangan</span></a>
+  <a class="nav-item" href="/page/kontak_penghuni.html"><span class="nav-icon">👥</span><span>Kontak</span></a>
+  <a class="nav-item" href="/page/settings.html"><span class="nav-icon">⚙️</span><span>Pengaturan</span></a>
+</nav>
+
+<a href="/page/add_kost.html" class="fab" title="Tambah Rumah Kos">+</a>
+<div id="toast" class="toast"></div>
+
+<div id="modal-overlay" class="modal-overlay">
+  <div class="modal-box">
+    <h3>⚠️ Konfirmasi Hapus</h3>
+    <p id="modal-message"></p>
+    <p>Ketik <span id="modal-keyword" class="modal-keyword"></span> untuk konfirmasi:</p>
+    <input type="text" id="modal-input" placeholder="Ketik di sini...">
+    <div class="modal-actions">
+      <button id="modal-cancel">Batal</button>
+      <button id="modal-confirm" disabled>Hapus</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

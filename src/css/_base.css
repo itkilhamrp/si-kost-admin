@@ -1,0 +1,441 @@
+/* ════════════════════════════════════════════════
+   _base.css — Layout, Header, Search Bar, Nav
+════════════════════════════════════════════════ */
+
+/* ── Layout ── */
+.container{
+  max-width:1080px;margin:0 auto;padding:var(--sp-3);
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 90px);
+}
+.container.no-fab{
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 32px);
+}
+
+/* ── Header ── */
+/* ════════════════════════════════════════════════
+   HEADER — Konsisten di semua halaman & ukuran layar
+   Patch ini ditambahkan SETELAH _base.css di bundle
+════════════════════════════════════════════════ */
+ 
+/* ── Variabel tinggi header yang konsisten ── */
+:root {
+  --hdr-h: 56px;
+}
+ 
+/* ── Header: fixed height, tidak bisa melar ── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-4);
+  padding-top: env(safe-area-inset-top, 0px);
+  /* Height konsisten: tinggi tetap + safe area atas */
+  height: calc(var(--hdr-h) + env(safe-area-inset-top, 0px));
+  min-height: calc(var(--hdr-h) + env(safe-area-inset-top, 0px));
+  max-height: calc(var(--hdr-h) + env(safe-area-inset-top, 0px));
+  box-sizing: border-box;
+  /* Cegah konten dalam header mendorong tinggi */
+  overflow: hidden;
+}
+ 
+/* ── Title group: satu baris, tidak wrap ── */
+.header-title,
+.header-title-group {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  overflow: hidden;
+}
+ 
+.header-title h1,
+.header-title-group h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.header-subtitle,
+.salam-user {
+  font-size: .68rem;
+  color: rgba(255, 255, 255, .72);
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+/* ── Live clock ── */
+#live-time {
+  font-size: .68rem;
+  color: rgba(255, 255, 255, .85);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+ 
+/* ── Back btn & icon btn: ukuran fixed ── */
+.back-btn,
+.icon-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .15);
+  color: #fff;
+  font-size: 1rem;
+  transition: background var(--dur);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.back-btn:hover, .icon-btn:hover { background: rgba(255, 255, 255, .25) }
+.back-btn:active, .icon-btn:active { background: rgba(255, 255, 255, .1) }
+
+/* ── Search Bar ── */
+.search-bar-wrap{
+  background:var(--green-lt);padding:var(--sp-2) var(--sp-3);
+  border-bottom:1px solid var(--green-mid);
+  position:sticky;top:var(--hdr-h);z-index:100;
+}
+.search-bar-inner{
+  display:flex;align-items:center;gap:var(--sp-2);
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-full);padding:8px var(--sp-3);
+  transition:border-color var(--dur);
+}
+.search-bar-inner:focus-within{border-color:var(--green)}
+.search-bar-inner .si{font-size:.85rem;color:var(--text-3);flex-shrink:0}
+.search-bar-inner input{flex:1;border:none;outline:none;background:transparent;color:var(--text);font-size:.875rem}
+.search-bar-inner input::placeholder{color:var(--text-3)}
+.search-bar-inner .clear-btn{flex-shrink:0;color:var(--text-3);font-size:.8rem;padding:2px 5px;border-radius:50%;transition:color var(--dur)}
+.search-bar-inner .clear-btn:hover{color:var(--text)}
+
+/* ── Bottom Nav ── */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--surface);border-top:1px solid var(--border);
+  display:flex;align-items:stretch;
+  height:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  box-shadow:0 -1px 0 var(--border);
+}
+[data-theme="dark"] .bottom-nav{box-shadow:0 -1px 0 var(--border);background:var(--surface)}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:3px;
+  padding:6px 4px;color:var(--text-3);font-size:.6rem;font-weight:600;
+  cursor:pointer;transition:color var(--dur);
+  text-decoration:none;border:none;background:none;
+  -webkit-tap-highlight-color:transparent;position:relative;
+}
+.nav-item .nav-icon{font-size:1.3rem;line-height:1;transition:transform var(--dur)}
+.nav-item.active{color:var(--green)}
+.nav-item.active .nav-icon{transform:scale(1.12)}
+.nav-item:hover:not(.active){color:var(--text-2)}
+.nav-item.active::after{content:"";position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--green)}
+
+/* ── Misc Utilities ── */
+.hidden{display:none!important}
+.empty-state{text-align:center;padding:36px var(--sp-4);color:var(--text-3);font-size:.875rem;grid-column:1/-1}
+.section-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3);margin:var(--sp-4) 0 var(--sp-2)}
+h2{font-size:1.1rem;font-weight:700;margin-bottom:var(--sp-3)}
+
+/* ════════════════════════════════════════════════
+   DESKTOP SIDEBAR NAV — kanan layar, bisa toggle
+   Mobile: tetap pakai .bottom-nav biasa
+════════════════════════════════════════════════ */
+
+/* Sembunyikan sidebar di mobile */
+.desk-sidebar-nav { display: none }
+
+@media(min-width:900px) {
+  /* Sembunyikan bottom nav di desktop */
+  .bottom-nav { display: none !important }
+
+  /* Sidebar container */
+  .desk-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    z-index: 400;
+    width: var(--dsn-w, 64px);
+    background: var(--surface);
+    border-right: 1.5px solid var(--border);
+    box-shadow: 4px 0 24px rgba(0,0,0,.07);
+    transition: width .22s cubic-bezier(.4,0,.2,1);
+    overflow: hidden;
+  }
+  [data-theme="dark"] .desk-sidebar-nav {
+    box-shadow: 4px 0 24px rgba(0,0,0,.3);
+  }
+
+  /* Expanded state */
+  .desk-sidebar-nav.dsn-open {
+    width: 200px;
+  }
+
+  /* Toggle button di atas */
+  .dsn-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 56px;
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-3);
+    font-size: 1rem;
+    border-bottom: 1.5px solid var(--border);
+    transition: background var(--dur), color var(--dur);
+    position: relative;
+  }
+  .dsn-toggle:hover {
+    background: var(--bg);
+    color: var(--text);
+  }
+  /* Tooltip */
+  .dsn-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 10px);
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1e293b;
+    color: #f8fafc;
+    font-size: .72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+    font-family: system-ui, sans-serif;
+  }
+  .dsn-toggle:hover::after { opacity: 1 }
+  [data-theme="dark"] .dsn-toggle::after { background: #334155 }
+
+  /* Toggle icon animasi */
+  .dsn-toggle-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform .22s;
+  }
+  .dsn-toggle-icon span {
+    display: block;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: width .22s, transform .22s, opacity .22s;
+  }
+  .dsn-toggle-icon span:nth-child(1) { width: 16px }
+  .dsn-toggle-icon span:nth-child(2) { width: 12px }
+  .dsn-toggle-icon span:nth-child(3) { width: 16px }
+  .desk-sidebar-nav.dsn-open .dsn-toggle-icon span:nth-child(1) {
+    width: 16px; transform: translateY(6px) rotate(45deg);
+  }
+  .desk-sidebar-nav.dsn-open .dsn-toggle-icon span:nth-child(2) {
+    opacity: 0; transform: scaleX(0);
+  }
+  .desk-sidebar-nav.dsn-open .dsn-toggle-icon span:nth-child(3) {
+    width: 16px; transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Nav items */
+  .dsn-items {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--sp-2) 0;
+    overflow: hidden;
+  }
+
+  .dsn-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 0;
+    height: 52px;
+    text-decoration: none;
+    color: var(--text-3);
+    font-size: .84rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color var(--dur), background var(--dur);
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+  .dsn-item:hover {
+    color: var(--text);
+    background: var(--bg);
+  }
+  .dsn-item.active {
+    color: var(--green-dk);
+    background: var(--green-lt);
+  }
+  [data-theme="dark"] .dsn-item.active { color: var(--green) }
+
+  /* Active indicator */
+  .dsn-item.active::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--green);
+  }
+
+  /* Ikon wrapper — lebar tetap 64px agar center saat collapsed */
+  .dsn-item-icon {
+    width: 64px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: transform .15s;
+  }
+  .dsn-item:hover .dsn-item-icon { transform: scale(1.12) }
+
+  /* Label teks — muncul saat expand */
+  .dsn-item-label {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity .18s .05s, transform .18s .05s;
+    pointer-events: none;
+  }
+  .desk-sidebar-nav.dsn-open .dsn-item-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Padding body di-handle SEPENUHNYA oleh sidebar-nav.js via inline style.
+     TIDAK ada CSS padding rule di sini — agar halaman tanpa sidebar
+     tidak terkena efek apapun. */
+
+  /* Suppress transisi saat init (anti-flicker) */
+  .dsn-no-transition,
+  .dsn-no-transition * {
+    transition: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   LANDSCAPE MOBILE — Android notch + nav bar safe
+   Berlaku hanya untuk layar kecil orientasi landscape
+════════════════════════════════════════════════ */
+
+@media (max-width: 899px) and (orientation: landscape) {
+
+  /* ── Kurangi tinggi header ── */
+  :root {
+    --hdr-h: 44px;
+    --nav-h: 48px;
+    /* Fallback jika --sal/--sar belum di-inject JS */
+    --sal: env(safe-area-inset-left,  0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sat: env(safe-area-inset-top,   0px);
+    --sab: env(safe-area-inset-bottom,0px);
+  }
+
+  /* ── Header: hindari notch kiri & kanan ── */
+  .app-header {
+    min-height: var(--hdr-h);
+    padding-top:   calc(6px + var(--sat));
+    padding-left:  calc(var(--sp-4) + var(--sal));
+    padding-right: calc(var(--sp-4) + var(--sar));
+    padding-bottom: 6px;
+  }
+
+  /* ── Bottom nav: hindari navigation bar kanan & bawah ── */
+  .bottom-nav {
+    height: calc(var(--nav-h) + var(--sab));
+    padding-bottom: var(--sab);
+    padding-left:  var(--sal);
+    padding-right: var(--sar);
+  }
+
+  /* ── Container: hindari notch kiri & nav bar kanan ── */
+  .container {
+    padding-left:  calc(var(--sp-2) + var(--sal));
+    padding-right: calc(var(--sp-2) + var(--sar));
+    padding-bottom: calc(var(--nav-h) + var(--sab) + 60px);
+  }
+  .container.no-fab {
+    padding-bottom: calc(var(--nav-h) + var(--sab) + 16px);
+  }
+
+  /* ── Search bar ── */
+  .search-bar-wrap {
+    padding-left:  calc(var(--sp-3) + var(--sal));
+    padding-right: calc(var(--sp-3) + var(--sar));
+  }
+
+  /* ── FAB ── */
+  .fab {
+    bottom: calc(var(--nav-h) + var(--sab) + 10px);
+    right:  calc(16px + var(--sar));
+  }
+
+  /* ── Toast ── */
+  .toast {
+    bottom: calc(var(--nav-h) + var(--sab) + 10px);
+  }
+
+  /* ── Form lebih compact ── */
+  .modern-form, .form-wrap { padding: var(--sp-3) }
+  .input-group, .field     { margin-bottom: var(--sp-3) }
+}
+
+/* ════════════════════════════════════════════════
+   IMMERSIVE / FULLSCREEN HINT
+   Meminta browser/WebView sembunyikan system UI
+   saat user scroll — mirip perilaku game mobile
+════════════════════════════════════════════════ */
+
+/* Meta viewport sudah ada viewport-fit=cover di HTML.
+   CSS tambahan: pastikan html/body tidak ada gap di area notch */
+@supports (padding: env(safe-area-inset-top)) {
+  html {
+    /* Isi area di belakang status bar dengan warna hijau (warna header) */
+    background-color: var(--green);
+  }
+  body {
+    /* Pastikan konten tidak muncul di belakang system UI */
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Landscape: body padding-top tidak perlu karena header sudah handle */
+@media (orientation: landscape) and (max-width: 899px) {
+  body {
+    padding-top: 0;
+  }
+}

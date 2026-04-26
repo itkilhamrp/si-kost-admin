@@ -1,0 +1,908 @@
+/* ════════════════════════════════════════════════
+   _pages.css — Halaman-spesifik:
+     Kamar Info Header, Penghuni, Pembayaran,
+     Perpanjangan, Riwayat, Keuangan, Settings,
+     Login, Unit
+════════════════════════════════════════════════ */
+
+/* ── Kamar Info Header ── */
+.kamar-info-header{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+  margin-bottom:var(--sp-3);
+  display:flex;gap:var(--sp-3);align-items:center;flex-wrap:wrap;
+}
+.kih-left{flex:1;min-width:0}
+.kih-harga-big{font-size:1.35rem;font-weight:800;color:var(--green-dk);line-height:1.1}
+[data-theme="dark"] .kih-harga-big{color:var(--green)}
+.kih-per-bulan{font-size:.73rem;color:var(--text-2);margin-top:1px}
+.kih-unit-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:var(--sp-2)}
+.kih-right{flex-shrink:0}
+
+/* ── Pembayaran Status ── */
+.bayar-status-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-4);margin-bottom:var(--sp-2);
+}
+.bsc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-2)}
+.bsc-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3)}
+.bsc-badge{display:inline-flex;align-items:center;gap:3px;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:var(--r-full)}
+.bsc-badge.lunas{background:var(--green-mid);color:var(--green-dk)}
+.bsc-badge.belum{background:var(--amber-mid);color:var(--amber)}
+[data-theme="dark"] .bsc-badge.lunas{color:var(--green)}
+.bsc-progress{height:7px;background:var(--border);border-radius:var(--r-full);overflow:hidden;margin-bottom:var(--sp-3)}
+.bsc-bar{height:100%;border-radius:var(--r-full);transition:width .5s ease}
+.bsc-bar.green{background:var(--green)}
+.bsc-bar.amber{background:var(--amber)}
+.bsc-summary{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--sp-2)}
+.bsc-paid{font-size:1.05rem;font-weight:800;color:var(--text)}
+
+/* ── Form Catat Bayar ── */
+.bayar-form-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2);
+}
+.bayar-form-toggle{
+  width:100%;padding:var(--sp-3) var(--sp-4);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.875rem;font-weight:600;color:var(--green-dk);
+  background:none;border:none;cursor:pointer;text-align:left;
+  transition:background var(--dur);
+}
+[data-theme="dark"] .bayar-form-toggle{color:var(--green)}
+.bayar-form-toggle:hover{background:var(--green-lt)}
+.toggle-arrow{transition:transform .2s;color:var(--text-3);font-size:.7rem}
+.bayar-form-toggle.open .toggle-arrow{transform:rotate(180deg)}
+.bayar-form-body{padding:0 var(--sp-4) var(--sp-4);border-top:1px solid var(--border);display:none}
+.bayar-form-body.open{display:block}
+.bayar-input-row{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)}
+.bayar-field{display:flex;flex-direction:column;gap:5px}
+.bayar-field label{font-size:.73rem;font-weight:600;color:var(--text-2)}
+.bayar-field input{
+  padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);
+  background:var(--bg);color:var(--text);font-size:.875rem;outline:none;
+  transition:border-color var(--dur);
+}
+.bayar-field input:focus{border-color:var(--green)}
+.bayar-field.grow{flex:1;min-width:120px}
+.bayar-hint-text{
+  font-size:.78rem;color:var(--text-2);margin-top:var(--sp-2);
+  padding:var(--sp-2) var(--sp-3);
+  background:var(--green-lt);border-radius:var(--r-md);line-height:1.55;
+}
+.bayar-hint-text strong{color:var(--green-dk)}
+[data-theme="dark"] .bayar-hint-text strong{color:var(--green)}
+
+/* Bayar item list */
+.bayar-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-md);padding:10px var(--sp-3);margin-bottom:6px;
+  display:flex;align-items:center;gap:var(--sp-2);
+}
+.bi-body{flex:1;min-width:0}
+.bi-nominal{font-weight:700;color:var(--green-dk);font-size:.9rem}
+[data-theme="dark"] .bi-nominal{color:var(--green)}
+.bi-bulan{font-size:.73rem;color:var(--text-2);margin-top:1px}
+.bi-del{
+  flex-shrink:0;color:var(--text-3);font-size:.73rem;
+  padding:5px 9px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:var(--bg);
+  cursor:pointer;transition:all var(--dur);
+}
+.bi-del:hover{color:var(--danger);border-color:var(--danger);background:var(--danger-lt)}
+
+/* ── Perpanjangan Panel ── */
+.perp-panel{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--r-md);padding:var(--sp-3);margin-top:var(--sp-2);
+}
+.perp-title{font-size:.73rem;font-weight:700;color:var(--text-2);margin-bottom:var(--sp-2)}
+.perp-quick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:var(--sp-2)}
+.perp-q-btn{
+  flex:1;min-width:56px;padding:8px 6px;border-radius:var(--r-md);
+  border:1.5px solid var(--border);background:var(--surface);
+  font-size:.73rem;font-weight:700;color:var(--text-2);
+  cursor:pointer;text-align:center;transition:all var(--dur);line-height:1.2;
+}
+.perp-q-btn:hover{border-color:var(--green);color:var(--green-dk);background:var(--green-lt)}
+[data-theme="dark"] .perp-q-btn:hover{color:var(--green)}
+.perp-q-btn.perp-q-active{border-color:var(--green);background:var(--green-lt);color:var(--green-dk);font-weight:700}
+[data-theme="dark"] .perp-q-btn.perp-q-active{color:var(--green)}
+.perp-q-sub{font-size:.6rem;color:var(--text-3);display:block;margin-top:2px;font-weight:400}
+.perp-manual{display:flex;gap:var(--sp-2);align-items:center;margin-top:var(--sp-2)}
+.perp-manual input[type="date"]{
+  flex:1;padding:9px 12px;font-size:.875rem;
+  border:1.5px solid var(--border);border-radius:var(--r-md);
+  background:var(--surface);color:var(--text);outline:none;
+  transition:border-color var(--dur);
+}
+.perp-manual input:focus{border-color:var(--green)}
+.perp-hint{
+  display:none;margin-top:var(--sp-2);padding:var(--sp-2) var(--sp-3);
+  background:var(--green-lt);border-radius:var(--r-md);
+  font-size:.78rem;color:var(--green-dk);line-height:1.5;
+}
+[data-theme="dark"] .perp-hint{color:var(--green)}
+.perp-hint.show{display:block}
+
+/* ── Riwayat Penghuni ── */
+.riwayat-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-md);padding:var(--sp-3);margin-bottom:var(--sp-2);
+  display:flex;align-items:flex-start;gap:var(--sp-2);
+}
+.rw-body{flex:1;min-width:0}
+.rw-name{font-weight:700;font-size:.875rem}
+.rw-dates{color:var(--text-2);font-size:.77rem;margin-top:2px}
+.rw-total{color:var(--green-dk);font-weight:600;margin-top:4px;font-size:.8rem}
+[data-theme="dark"] .rw-total{color:var(--green)}
+.rw-del{
+  flex-shrink:0;color:var(--text-3);font-size:.73rem;
+  padding:5px 9px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:var(--bg);
+  cursor:pointer;transition:all var(--dur);
+}
+.rw-del:hover{color:var(--danger);border-color:var(--danger);background:var(--danger-lt)}
+
+/* ── Keuangan Tiles ── */
+.keu-tiles{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);margin-bottom:var(--sp-3)}
+.keu-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-3)}
+.keu-tile .kt-label{font-size:.63rem;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.keu-tile .kt-val{font-size:.95rem;font-weight:700;margin-top:4px}
+.keu-tile.green .kt-val{color:var(--green-dk)}
+[data-theme="dark"] .keu-tile.green .kt-val{color:var(--green)}
+
+/* ── Settings ── */
+.settings-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);margin-bottom:var(--sp-3)}
+.settings-section h3{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3);margin-bottom:var(--sp-3)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:.875rem}
+.settings-row:last-child{border-bottom:none}
+.theme-options{display:flex;gap:var(--sp-2)}
+.theme-option{flex:1;padding:9px 4px;border-radius:var(--r-md);border:1.5px solid var(--border);background:var(--bg);color:var(--text-2);font-size:.775rem;font-weight:600;text-align:center;transition:all var(--dur);cursor:pointer}
+.theme-option.active{border-color:var(--green);background:var(--green-lt);color:var(--green-dk)}
+[data-theme="dark"] .theme-option.active{color:var(--green)}
+
+/* ── Login ── */
+.login-page{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--sp-6) var(--sp-4);background:var(--bg)}
+.login-logo{font-size:2.5rem;margin-bottom:var(--sp-2)}
+.login-title{font-size:1.4rem;font-weight:700;letter-spacing:-.02em}
+.login-subtitle{font-size:.85rem;color:var(--text-2);margin-bottom:var(--sp-5);text-align:center}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-5);width:100%;max-width:320px}
+
+/* ── Unit Page ── */
+.unit-list-item{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-3);
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);margin-bottom:var(--sp-2);
+  transition:border-color var(--dur);
+  animation:fadeUp .15s both;
+}
+.unit-list-item:hover{border-color:var(--green)}
+.unit-ikon{font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--green-lt);border-radius:var(--r-md)}
+.unit-nama{flex:1;font-weight:600;font-size:.875rem}
+.unit-hapus-btn{
+  flex-shrink:0;font-size:.73rem;padding:5px 11px;
+  border:1px solid var(--border);border-radius:var(--r-sm);
+  background:transparent;color:var(--text-3);cursor:pointer;
+  transition:all var(--dur);
+}
+.unit-hapus-btn:hover{color:var(--danger);border-color:var(--danger);background:var(--danger-lt)}
+
+/* ── Kontak Detail Page ── */
+.kontak-detail-header{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-4);margin-bottom:var(--sp-3);
+  display:flex;gap:var(--sp-4);align-items:center;flex-wrap:wrap;
+}
+.kdh-avatar{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--green-lt),var(--green-mid));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border:2.5px solid var(--green-mid);
+}
+.kdh-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.kdh-avatar-initials{font-size:1.4rem;font-weight:700;color:var(--green-dk)}
+[data-theme="dark"] .kdh-avatar-initials{color:var(--green)}
+.kdh-body{flex:1;min-width:0}
+.kdh-nama{font-size:1.05rem;font-weight:700;line-height:1.2}
+.kdh-meta{display:flex;gap:var(--sp-2);margin-top:var(--sp-1);flex-wrap:wrap;align-items:center}
+.kdh-no-hp{font-size:.82rem;color:var(--text-2)}
+.kdh-actions{display:flex;gap:var(--sp-2);margin-top:var(--sp-3);flex-wrap:wrap}
+
+/* ════════════════════════════════════════════════
+   KONTAK FILTER BAR
+   Sticky di bawah search bar, sama style index
+════════════════════════════════════════════════ */
+.kontak-filter-wrap{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:calc(var(--hdr-h) + 48px);z-index:99;
+  overflow-x:auto;scrollbar-width:none;
+}
+.kontak-filter-wrap::-webkit-scrollbar{display:none}
+.kontak-filter-inner{
+  display:flex;gap:var(--sp-1);
+  padding:var(--sp-2) var(--sp-3);
+  min-width:max-content;
+}
+.kf-tab{
+  flex-shrink:0;
+  padding:6px 14px;border-radius:var(--r-full);
+  border:1.5px solid var(--border);background:var(--bg);
+  color:var(--text-2);font-size:.775rem;font-weight:600;
+  cursor:pointer;transition:all var(--dur);white-space:nowrap;
+}
+.kf-tab:hover{border-color:var(--green);color:var(--green-dk);background:var(--green-lt)}
+.kf-tab.active{
+  background:var(--green);border-color:var(--green);
+  color:#fff;box-shadow:0 2px 8px rgba(22,163,74,.25);
+}
+[data-theme="dark"] .kf-tab:hover{color:var(--green)}
+
+/* ════════════════════════════════════════════════
+   FORM KONTAK — jk toggle, avatar picker, labels
+════════════════════════════════════════════════ */
+.req{color:var(--danger);margin-left:2px}
+.label-opt{font-size:.7rem;color:var(--text-3);font-weight:400;margin-left:3px}
+
+.jk-toggle-group{
+  display:flex;gap:var(--sp-2);
+}
+.jk-btn{
+  flex:1;padding:10px var(--sp-3);
+  border:1.5px solid var(--border);border-radius:var(--r-md);
+  background:var(--bg);color:var(--text-2);
+  font-size:.875rem;font-weight:600;font-family:inherit;
+  cursor:pointer;transition:all var(--dur);text-align:center;
+}
+.jk-btn:hover{border-color:var(--green);background:var(--green-lt);color:var(--green-dk)}
+.jk-btn.active{
+  background:var(--green);border-color:var(--green);
+  color:#fff;box-shadow:0 2px 8px rgba(22,163,74,.25);
+}
+[data-theme="dark"] .jk-btn:hover{color:var(--green)}
+
+/* Avatar picker — bulat untuk foto profil */
+.avatar-picker{
+  border-radius:50% !important;
+  width:100px;height:100px;
+  padding:0 !important;
+  margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.avatar-picker img{
+  width:100%;height:100%;object-fit:cover;
+  border-radius:50%;max-height:none !important;
+}
+.avatar-picker-hint{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.avatar-picker-icon{font-size:2rem;line-height:1}
+.avatar-picker-hint p{font-size:.65rem;color:var(--text-3);text-align:center;margin:0}
+
+/* Picker hint inner (untuk KTP) */
+.picker-hint-inner{
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp-1);
+}
+.picker-hint-inner p{font-size:.8rem;color:var(--text-3);margin:0}
+
+/* Btn link danger */
+.btn-link-danger{
+  background:none;border:none;
+  color:var(--danger);font-size:.78rem;font-weight:600;
+  cursor:pointer;padding:4px 0;
+  display:flex;align-items:center;gap:4px;
+  transition:opacity var(--dur);
+}
+.btn-link-danger:hover{opacity:.75}
+
+/* ── KTP Card & Lightbox ── */
+
+/* Card wrapper */
+.ktp-card{
+  margin-top:var(--sp-2);
+}
+
+/* Thumbnail container — rasio KTP 85.6mm×54mm ≈ 16:10 */
+.ktp-img-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  max-width:480px;       /* batas agar tidak melebar di desktop */
+  margin:var(--sp-2) auto 0;
+  border-radius:var(--r-md);
+  overflow:hidden;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  cursor:zoom-in;
+  transition:border-color var(--dur),box-shadow var(--dur);
+}
+.ktp-img-wrap:hover{
+  border-color:var(--green);
+  box-shadow:0 4px 18px rgba(22,163,74,.15);
+}
+.ktp-img{
+  width:100%;height:100%;
+  object-fit:contain;       /* tampilkan seluruh KTP tanpa crop */
+  display:block;
+  transition:transform .2s ease;
+}
+.ktp-img-wrap:hover .ktp-img{
+  transform:scale(1.02);
+}
+
+/* Overlay hint zoom */
+.ktp-zoom-hint{
+  position:absolute;bottom:8px;right:8px;
+  background:rgba(0,0,0,.55);color:#fff;
+  font-size:.68rem;font-weight:600;
+  padding:4px 10px;border-radius:var(--r-full);
+  pointer-events:none;
+  backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .2s;
+}
+.ktp-img-wrap:hover .ktp-zoom-hint{opacity:1}
+
+/* Lightbox overlay */
+.ktp-lightbox{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:900;
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:var(--sp-4);
+  animation:fadeIn .18s both;
+}
+.ktp-lightbox.active{display:flex}
+
+/* Tombol tutup */
+.ktp-lb-close{
+  position:absolute;top:16px;right:16px;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.15);
+  border:1.5px solid rgba(255,255,255,.25);
+  color:#fff;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .15s;
+  z-index:1;
+  backdrop-filter:blur(6px);
+}
+.ktp-lb-close:hover{background:rgba(255,255,255,.28)}
+
+/* Inner wrapper gambar besar */
+.ktp-lb-inner{
+  width:100%;
+  max-width:720px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ktp-lb-img{
+  width:100%;
+  max-height:calc(100dvh - 120px);
+  object-fit:contain;
+  border-radius:var(--r-md);
+  box-shadow:0 8px 40px rgba(0,0,0,.6);
+  animation:scaleIn .2s cubic-bezier(.34,1.1,.64,1) both;
+  display:block;
+}
+
+/* Hint teks di bawah */
+.ktp-lb-hint{
+  margin-top:var(--sp-3);
+  font-size:.72rem;color:rgba(255,255,255,.45);
+  text-align:center;pointer-events:none;
+}
+
+/* Desktop — gambar lightbox lebih presisi */
+@media(min-width:900px){
+  .ktp-img-wrap{
+    max-width:520px;
+  }
+  .ktp-lb-img{
+    max-height:calc(100dvh - 100px);
+    border-radius:var(--r-lg);
+  }
+  .ktp-zoom-hint{
+    font-size:.73rem;padding:5px 12px;
+    /* selalu tampil di desktop karena hover lebih mudah */
+    opacity:.75;
+  }
+  .ktp-img-wrap:hover .ktp-zoom-hint{opacity:1}
+}
+
+/* ── Tombol copy no HP di detail kontak ── */
+.kdh-copy-hp{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--r-full);
+  padding:4px 12px;font-size:.8rem;font-weight:600;
+  color:var(--text-2);cursor:pointer;
+  transition:all var(--dur);display:inline-flex;align-items:center;gap:4px;
+}
+.kdh-copy-hp:hover{
+  border-color:var(--green);background:var(--green-lt);color:var(--green-dk);
+}
+.kdh-copy-hp:active{transform:scale(.95)}
+[data-theme="dark"] .kdh-copy-hp:hover{color:var(--green)}
+
+/* ════════════════════════════════════════════════
+   TAMBAH PENGHUNI — Pick banner, pick list,
+   selected item, form section label
+════════════════════════════════════════════════ */
+
+/* Label section form */
+.form-section-label{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.07em;color:var(--text-3);
+  margin-bottom:var(--sp-2);
+}
+
+/* Banner info kamar terpilih / picker kamar */
+.pick-banner{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  margin-bottom:var(--sp-2);
+  min-height:48px;
+}
+
+/* Row info kamar (gambar + info) */
+.kamar-info-row{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-3);
+}
+.kamar-banner-thumb{
+  width:56px;height:56px;border-radius:var(--r-md);
+  object-fit:cover;flex-shrink:0;
+}
+.kamar-banner-thumb-ph{
+  width:56px;height:56px;border-radius:var(--r-md);
+  background:var(--bg);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+}
+
+/* Pick list — daftar item yang bisa dipilih */
+.pick-list{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  max-height:280px;overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--border) transparent;
+}
+.pick-list:empty{display:none}
+
+/* Item di dalam pick list */
+.kontak-pick-item{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-3);
+  border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background var(--dur);
+  -webkit-tap-highlight-color:transparent;
+}
+.kontak-pick-item:last-child{border-bottom:none}
+.kontak-pick-item:hover{background:var(--green-lt)}
+.kontak-pick-item:active{background:var(--green-mid)}
+
+/* Avatar di pick list — bulat, ukuran seragam */
+.kontak-pick-avatar{
+  width:40px;height:40px;border-radius:50%;
+  object-fit:cover;flex-shrink:0;
+  border:1.5px solid var(--border);
+}
+.kontak-pick-avatar-ph{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green-lt),var(--green-mid));
+  border:1.5px solid var(--green-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;font-weight:700;color:var(--green-dk);
+  flex-shrink:0;
+}
+[data-theme="dark"] .kontak-pick-avatar-ph{color:var(--green)}
+
+.kontak-pick-info{flex:1;min-width:0}
+.kontak-pick-nama{
+  font-size:.875rem;font-weight:600;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.kontak-pick-hp{
+  font-size:.73rem;color:var(--text-2);margin-top:2px;
+}
+.kontak-pick-arrow{
+  color:var(--text-3);font-size:1.1rem;flex-shrink:0;
+}
+
+/* Kontak terpilih — card yang tampil setelah pilih */
+.selected-item-card{
+  background:var(--green-lt);border:1.5px solid var(--green-mid);
+  border-radius:var(--r-lg);padding:var(--sp-3);
+  margin-bottom:var(--sp-2);
+  animation:fadeUp .15s both;
+}
+[data-theme="dark"] .selected-item-card{
+  background:var(--green-lt);border-color:var(--green-mid);
+}
+.selected-kontak-inner{
+  display:flex;align-items:center;gap:var(--sp-3);
+}
+.selected-kontak-inner .kontak-pick-avatar,
+.selected-kontak-inner .kontak-pick-avatar-ph{
+  width:44px;height:44px;
+}
+
+/* ════════════════════════════════════════════════
+   DETAIL KAMAR — Kamar header, penghuni cards,
+   pembayaran per penghuni, riwayat
+════════════════════════════════════════════════ */
+
+/* ── Kamar Info Header ── */
+.kamar-info-header{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  margin-bottom:var(--sp-3);
+}
+.kih-left{padding:var(--sp-4)}
+.kih-harga-wrap{display:flex;align-items:baseline;gap:var(--sp-2);flex-wrap:wrap}
+.kih-harga-coret{
+  font-size:.82rem;color:var(--text-3);
+  text-decoration:line-through;font-weight:500;
+}
+.kih-harga-efektif{
+  font-size:1.5rem;font-weight:800;color:var(--green-dk);line-height:1;
+}
+[data-theme="dark"] .kih-harga-efektif{color:var(--green)}
+.kih-diskon-badge{
+  font-size:.68rem;font-weight:700;
+  background:var(--danger);color:#fff;
+  padding:2px 7px;border-radius:var(--r-full);
+}
+.kih-per-bulan{font-size:.75rem;color:var(--text-2);margin-top:3px}
+.kih-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:var(--sp-2)}
+.kih-unit-wrap{display:flex;flex-wrap:wrap;gap:4px}
+
+/* ── Penghuni List Header ── */
+.penghuni-list-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:var(--sp-2);
+}
+.penghuni-slot-info{
+  font-size:.78rem;font-weight:600;color:var(--text-2);
+}
+.btn-tambah-penghuni-mini{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:6px 14px;border-radius:var(--r-full);
+  background:var(--green);color:#fff;
+  font-size:.775rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background var(--dur),box-shadow var(--dur);
+  box-shadow:0 2px 8px rgba(22,163,74,.3);
+}
+.btn-tambah-penghuni-mini:hover{background:var(--green-dk)}
+
+/* ── Kamar Kosong Card ── */
+.kamar-kosong-card{
+  background:var(--surface);border:1.5px dashed var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-5);
+  text-align:center;margin-bottom:var(--sp-2);
+}
+.kamar-kosong-card p{
+  font-size:.875rem;color:var(--text-2);margin-bottom:var(--sp-3);
+}
+
+/* ── Penghuni Card ── */
+.penghuni-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+  margin-bottom:var(--sp-2);animation:fadeUp .15s both;
+}
+.penghuni-card-head{
+  display:flex;align-items:center;gap:var(--sp-3);
+  margin-bottom:var(--sp-2);
+}
+.penghuni-card-avatar{flex-shrink:0}
+.penghuni-card-ava-ph{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green-lt),var(--green-mid));
+  border:2px solid var(--green-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:700;color:var(--green-dk);
+}
+[data-theme="dark"] .penghuni-card-ava-ph{color:var(--green)}
+.penghuni-card-info{flex:1;min-width:0}
+.penghuni-card-nama{font-size:.9rem;font-weight:700;line-height:1.2}
+.penghuni-card-dates{font-size:.77rem;color:var(--text-2);margin-top:3px;line-height:1.4}
+.penghuni-card-sisa{font-size:.75rem;font-weight:600;margin-top:4px}
+.penghuni-card-actions{
+  display:flex;gap:var(--sp-2);flex-wrap:wrap;
+  padding-top:var(--sp-2);border-top:1px solid var(--border);
+}
+
+/* ── Pembayaran per penghuni ── */
+.bayar-penghuni-section{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  margin-bottom:var(--sp-2);
+}
+.bayar-penghuni-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--sp-3) var(--sp-4) var(--sp-2);
+  border-bottom:1px solid var(--border);
+}
+.bayar-penghuni-nama{font-size:.875rem;font-weight:700}
+.bayar-penghuni-body{padding:var(--sp-3) var(--sp-4) var(--sp-3)}
+.bayar-progress-wrap{
+  height:7px;background:var(--border);border-radius:var(--r-full);
+  overflow:hidden;margin-bottom:var(--sp-2);
+}
+.bayar-progress-bar{
+  height:100%;border-radius:var(--r-full);
+  background:var(--green);transition:width .5s ease;
+}
+.bayar-summary{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:var(--sp-1);margin-bottom:var(--sp-2);
+  font-size:.82rem;color:var(--text-2);
+}
+.bayar-summary strong{color:var(--text);font-weight:700}
+.bayar-form-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--sp-2) var(--sp-1);margin-bottom:var(--sp-1);
+  cursor:pointer;border-radius:var(--r-md);
+  transition:background var(--dur);
+}
+.bayar-form-toggle:hover{background:var(--green-lt)}
+.bayar-form-label{font-size:.82rem;font-weight:600;color:var(--green-dk)}
+[data-theme="dark"] .bayar-form-label{color:var(--green)}
+.bayar-form-body{display:none;padding-top:var(--sp-2)}
+.bayar-form-body.open{display:block}
+
+/* ── Ringkasan pembayaran kamar (multi-penghuni) ── */
+.bayar-kamar-summary{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+  margin-bottom:var(--sp-3);
+}
+.bks-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:var(--sp-2);
+}
+.bks-title{font-size:.82rem;font-weight:700;color:var(--text)}
+.bks-sisa{
+  font-size:.78rem;color:var(--amber);font-weight:600;
+  margin-top:var(--sp-1);
+}
+
+/* ════════════════════════════════════════════════
+   FORM KAMAR — Kapasitas stepper, diskon presets,
+                form-row-2, harga preview
+════════════════════════════════════════════════ */
+
+/* 2-kolom grid untuk field sejajar */
+.form-row-2{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:var(--sp-3);margin-bottom:var(--sp-4);
+}
+.form-row-2 .input-group{margin-bottom:0}
+
+/* Kapasitas stepper */
+.kap-stepper{
+  display:flex;align-items:center;gap:var(--sp-2);
+}
+.kap-step-btn{
+  width:40px;height:40px;border-radius:var(--r-md);
+  border:1.5px solid var(--border);background:var(--bg);
+  color:var(--text);font-size:1.2rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all var(--dur);user-select:none;
+}
+.kap-step-btn:hover{border-color:var(--green);background:var(--green-lt);color:var(--green-dk)}
+.kap-step-btn:active{transform:scale(.9)}
+.kap-display{
+  display:flex;align-items:center;gap:var(--sp-1);
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-md);padding:8px 12px;
+  transition:border-color var(--dur);
+}
+.kap-display:focus-within{border-color:var(--green)}
+.kap-display input{
+  width:40px;text-align:center;border:none;outline:none;
+  background:transparent;color:var(--text);
+  font-size:1rem;font-weight:700;padding:0;
+  -moz-appearance:textfield;
+}
+.kap-display input::-webkit-inner-spin-button,
+.kap-display input::-webkit-outer-spin-button{-webkit-appearance:none}
+.kap-satuan{font-size:.78rem;color:var(--text-3);white-space:nowrap}
+
+/* Diskon presets */
+.diskon-label-val{
+  font-size:.75rem;font-weight:700;
+  color:var(--green-dk);margin-left:var(--sp-2);
+}
+[data-theme="dark"] .diskon-label-val{color:var(--green)}
+.diskon-presets{
+  display:flex;flex-wrap:wrap;gap:var(--sp-1);
+  margin-bottom:var(--sp-2);
+}
+.diskon-preset{
+  padding:6px 12px;border-radius:var(--r-full);
+  border:1.5px solid var(--border);background:var(--bg);
+  color:var(--text-2);font-size:.775rem;font-weight:600;
+  cursor:pointer;transition:all var(--dur);white-space:nowrap;
+}
+.diskon-preset:hover{border-color:var(--green);background:var(--green-lt);color:var(--green-dk)}
+.diskon-preset.active{
+  background:var(--green);border-color:var(--green);
+  color:#fff;box-shadow:0 2px 8px rgba(22,163,74,.25);
+}
+.diskon-preset[data-pct="0"]{color:var(--danger);border-color:var(--danger-mid)}
+.diskon-preset[data-pct="0"]:hover{background:var(--danger-lt);border-color:var(--danger)}
+.diskon-preset[data-pct="0"].active{background:var(--danger);border-color:var(--danger);color:#fff}
+[data-theme="dark"] .diskon-preset:hover{color:var(--green)}
+
+/* Diskon custom input row */
+.diskon-custom-row{
+  display:flex;align-items:center;gap:var(--sp-2);
+}
+.diskon-custom-row input{
+  width:80px;padding:8px 10px;
+  border:1.5px solid var(--border);border-radius:var(--r-md);
+  background:var(--bg);color:var(--text);
+  font-size:.9rem;font-weight:600;outline:none;
+  text-align:center;transition:border-color var(--dur);
+  -moz-appearance:textfield;
+}
+.diskon-custom-row input::-webkit-inner-spin-button,
+.diskon-custom-row input::-webkit-outer-spin-button{-webkit-appearance:none}
+.diskon-custom-row input:focus{border-color:var(--green)}
+.diskon-pct-sym{font-size:.9rem;font-weight:700;color:var(--text-2)}
+.diskon-custom-hint{font-size:.75rem;color:var(--text-3)}
+
+/* Harga preview setelah diskon */
+.harga-preview-wrap{
+  margin-top:var(--sp-2);min-height:28px;
+  font-size:.82rem;color:var(--text-2);
+  display:flex;align-items:center;gap:var(--sp-2);flex-wrap:wrap;
+}
+.harga-preview-wrap strong{color:var(--green-dk);font-size:.9rem}
+[data-theme="dark"] .harga-preview-wrap strong{color:var(--green)}
+.harga-preview-coret{
+  text-decoration:line-through;color:var(--text-3);font-size:.78rem;
+}
+
+/* ════════════════════════════════════════════════
+   UNIT PAGE — Info banner, add card, add row,
+               ikon picker, add button, list items
+════════════════════════════════════════════════ */
+
+/* Info banner */
+.unit-info-banner{
+  display:flex;align-items:flex-start;gap:var(--sp-3);
+  background:var(--green-lt);border:1.5px solid var(--green-mid);
+  border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+  margin-bottom:var(--sp-3);
+}
+[data-theme="dark"] .unit-info-banner{
+  background:var(--green-lt);border-color:var(--green-mid);
+}
+.unit-info-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.unit-info-banner p{
+  font-size:.82rem;color:var(--green-dk);line-height:1.55;margin:0;
+}
+[data-theme="dark"] .unit-info-banner p{color:var(--green)}
+
+/* Card wrapper untuk form tambah & daftar */
+.unit-add-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:var(--sp-4);
+  margin-bottom:var(--sp-3);
+}
+.unit-add-card .form-section-label{margin-bottom:var(--sp-3)}
+
+/* Row form tambah: ikon + nama + tombol */
+.unit-add-row{
+  display:flex;align-items:center;gap:var(--sp-2);
+}
+
+/* Ikon picker — kotak kecil untuk input emoji */
+.unit-ikon-picker{
+  flex-shrink:0;
+}
+.unit-ikon-picker input{
+  width:52px;height:44px;
+  text-align:center;font-size:1.3rem;
+  border:1.5px solid var(--border);border-radius:var(--r-md);
+  background:var(--bg);color:var(--text);
+  outline:none;cursor:pointer;
+  transition:border-color var(--dur);padding:0;
+}
+.unit-ikon-picker input:focus{border-color:var(--green)}
+
+/* Input nama dalam row — override margin */
+.unit-add-row .input-group input{
+  height:44px;padding:0 var(--sp-3);
+}
+
+/* Tombol tambah */
+.unit-add-btn{
+  flex-shrink:0;height:44px;padding:0 var(--sp-4);
+  border-radius:var(--r-md);border:none;
+  background:var(--green);color:#fff;
+  font-size:.875rem;font-weight:700;font-family:inherit;
+  cursor:pointer;white-space:nowrap;
+  transition:background var(--dur),box-shadow var(--dur);
+  box-shadow:0 2px 8px rgba(22,163,74,.3);
+}
+.unit-add-btn:hover{background:var(--green-dk);box-shadow:0 4px 14px rgba(22,163,74,.4)}
+.unit-add-btn:active{transform:scale(.96)}
+
+/* List item unit — override dari _pages.css lama */
+.unit-list-item{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-2) 0;
+  border-bottom:1px solid var(--border);
+  animation:fadeUp .12s both;
+  transition:background var(--dur);
+}
+.unit-list-item:last-child{border-bottom:none}
+.unit-ikon{
+  width:40px;height:40px;border-radius:var(--r-md);
+  background:var(--green-lt);border:1.5px solid var(--green-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+  transition:transform var(--dur);
+}
+.unit-list-item:hover .unit-ikon{transform:scale(1.08)}
+.unit-nama{
+  flex:1;font-weight:600;font-size:.875rem;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.unit-hapus-btn{
+  flex-shrink:0;padding:5px 12px;
+  border:1.5px solid var(--border);border-radius:var(--r-sm);
+  background:transparent;color:var(--text-3);
+  font-size:.73rem;font-weight:600;cursor:pointer;
+  transition:all var(--dur);
+}
+.unit-hapus-btn:hover{
+  color:var(--danger);border-color:var(--danger);
+  background:var(--danger-lt);
+}
+
+/* ════════════════════════════════════════════════
+   OPSI LAINNYA — dropdown panel di detail kontak
+════════════════════════════════════════════════ */
+.opsi-lainnya-wrap{
+  margin-top:var(--sp-2);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  animation:fadeUp .15s both;
+}
+.opsi-lainnya-item{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-4);
+  text-decoration:none;color:var(--text);
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  transition:background var(--dur);
+  cursor:pointer;
+}
+.opsi-lainnya-item:last-child{border-bottom:none}
+.opsi-lainnya-item:hover{background:var(--green-lt)}
+.opsi-lainnya-icon{
+  font-size:1.3rem;width:36px;height:36px;
+  background:var(--green-lt);border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.opsi-lainnya-label{
+  font-size:.875rem;font-weight:600;color:var(--text);line-height:1.2;
+}
+.opsi-lainnya-desc{
+  font-size:.72rem;color:var(--text-3);margin-top:2px;line-height:1.4;
+}
+
+/* Pick item active state (kamar terpilih di pindah-kamar) */
+.kontak-pick-item.pick-item-active{
+  background:var(--green-lt);border-left:3px solid var(--green);
+}

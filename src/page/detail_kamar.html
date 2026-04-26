@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initDetailKamar } from "/js/pages/detail-kamar.js";
+    document.addEventListener("DOMContentLoaded", initDetailKamar);
+  </script>
+  <title>Detail Kamar</title>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="#" class="back-btn" id="btn-back">←</a>
+  <div class="header-title">
+    <h1 id="judul-kamar">Detail Kamar</h1>
+    <p class="header-subtitle" id="sub-namarumah"></p>
+  </div>
+  <span id="live-time"></span>
+  <button class="icon-btn" id="btn-opsi-kamar" title="Opsi">⋮</button>
+</header>
+
+<div class="container no-fab">
+
+  <!-- Info kamar: harga, badge, unit chips -->
+  <div id="kamar-info-header"></div>
+
+  <!-- Penghuni aktif -->
+  <p class="section-title">👤 Penghuni &amp; Kontrak</p>
+  <div id="section-penghuni"></div>
+
+  <!-- Pembayaran per penghuni -->
+  <p class="section-title">💰 Catatan Pembayaran</p>
+  <div id="section-pembayaran"></div>
+
+  <!-- Riwayat -->
+  <p class="section-title">📋 Riwayat Penghuni</p>
+  <div id="section-riwayat"></div>
+
+</div>
+
+<nav class="bottom-nav">
+  <a class="nav-item active" href="/index.html"><span class="nav-icon">🏠</span><span>Kost</span></a>
+  <a class="nav-item" href="/page/keuangan.html"><span class="nav-icon">💰</span><span>Keuangan</span></a>
+  <a class="nav-item" href="/page/kontak_penghuni.html"><span class="nav-icon">👥</span><span>Kontak</span></a>
+  <a class="nav-item" href="/page/settings.html"><span class="nav-icon">⚙️</span><span>Pengaturan</span></a>
+</nav>
+
+<div id="toast" class="toast"></div>
+
+<!-- Modal typed konfirmasi hapus kamar -->
+<div id="modal-overlay" class="modal-overlay">
+  <div class="modal-box">
+    <h3>⚠️ Konfirmasi Hapus</h3>
+    <p id="modal-message"></p>
+    <p>Ketik <span id="modal-keyword" class="modal-keyword"></span> untuk konfirmasi:</p>
+    <input type="text" id="modal-input" placeholder="Ketik di sini...">
+    <div class="modal-actions">
+      <button id="modal-cancel">Batal</button>
+      <button id="modal-confirm" disabled>Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog sheet: checkout / hapus riwayat / hapus bayar / perpanjang -->
+<div id="dialog-overlay" class="dialog-overlay">
+  <div class="dialog-sheet">
+    <div class="dialog-handle"></div>
+    <div id="dialog-content"></div>
+  </div>
+</div>
+
+</body>
+</html>

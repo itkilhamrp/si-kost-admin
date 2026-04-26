@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initSettings } from "/js/pages/settings.js";
+    import { initSidebarNav } from "/js/ui/sidebar-nav.js";
+    document.addEventListener("DOMContentLoaded", () => {
+    initSettings();
+    initSidebarNav();
+  });
+  </script>
+  <title>Pengaturan — SI-KOST</title>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-title"><h1>⚙️ Pengaturan</h1></div>
+  </header>
+
+  <div class="container no-fab" style="max-width:520px">
+
+    <!-- Profil -->
+    <div class="settings-section">
+      <h3>👤 Profil</h3>
+      <div class="input-group" style="margin-bottom:var(--sp-2)">
+        <label>Nama Tampilan</label>
+        <input type="text" id="input-display-name" placeholder="Nama yang muncul di beranda">
+      </div>
+      <button class="save-btn" id="btn-simpan-nama">Simpan Nama</button>
+    </div>
+
+    <!-- Tampilan -->
+    <div class="settings-section">
+      <h3>🎨 Tampilan</h3>
+      <p style="font-size:.8rem;color:var(--text-2);margin-bottom:var(--sp-3)">Mode Tema</p>
+      <div class="theme-options">
+        <button class="theme-option" data-theme="light">☀️ Terang</button>
+        <button class="theme-option" data-theme="system">🌓 Otomatis</button>
+        <button class="theme-option" data-theme="dark">🌙 Gelap</button>
+      </div>
+    </div>
+
+    <!-- Unit -->
+    <div class="settings-section">
+      <h3>🏷️ Unit Kamar</h3>
+      <p style="font-size:.82rem;color:var(--text-2);margin-bottom:var(--sp-3)">
+        Kelola fasilitas/label kamar (AC, WiFi, dll) di halaman Unit.
+      </p>
+      <a href="/page/unit.html"
+         style="display:flex;align-items:center;justify-content:space-between;padding:12px var(--sp-3);background:var(--green);color:#fff;border-radius:var(--r-md);font-weight:600;font-size:.875rem;text-decoration:none">
+        <span>🏷️ Buka Halaman Unit</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Keamanan -->
+    <div class="settings-section">
+      <h3>🔐 Keamanan</h3>
+      <div class="input-group">
+        <label>Password Lama</label>
+        <input type="password" id="pass-lama" placeholder="Password saat ini" autocomplete="current-password">
+      </div>
+      <div class="input-group" style="margin-bottom:var(--sp-2)">
+        <label>Password Baru <span style="color:var(--text-3)">(min. 6 karakter)</span></label>
+        <input type="password" id="pass-baru" placeholder="Password baru" autocomplete="new-password">
+      </div>
+      <button class="save-btn" id="btn-ganti-pass">Simpan Password Baru</button>
+    </div>
+
+    <!-- Cache -->
+    <div class="settings-section">
+      <h3>⚡ Cache &amp; Performa</h3>
+      <p style="font-size:.82rem;color:var(--text-2);margin-bottom:var(--sp-3);line-height:1.6">
+        Cache mempercepat navigasi antar halaman. Data diperbarui otomatis
+        di background. Hapus jika ada data yang tidak sinkron.
+      </p>
+      <div class="settings-row" style="margin-bottom:var(--sp-3)">
+        <span style="font-weight:500">Status cache</span>
+        <span id="cache-info-text" style="color:var(--text-2);font-size:.8rem">—</span>
+      </div>
+      <button class="btn-secondary" id="btn-hapus-cache"
+        style="width:100%;justify-content:center;padding:11px;border-radius:var(--r-md)">
+        🗑️ Hapus Cache
+      </button>
+    </div>
+
+    <!-- Tentang -->
+    <div class="settings-section">
+      <h3>ℹ️ Tentang</h3>
+      <div class="settings-row"><span>Aplikasi</span><span>SI-KOST Native</span></div>
+      <div class="settings-row"><span>Versi</span><span>2.0.0</span></div>
+      <div class="settings-row"><span>Data</span><span>Lokal (offline)</span></div>
+    </div>
+
+    <!-- Sesi -->
+    <div class="settings-section">
+      <h3>🚪 Sesi</h3>
+      <button class="btn-danger" id="btn-logout">🚪 Keluar (Logout)</button>
+    </div>
+
+  </div>
+
+<!-- SAMA persis di SEMUA halaman, sebelum </body> -->
+<nav class="desk-sidebar-nav" role="navigation" aria-label="Navigasi Desktop">
+  <button class="dsn-toggle" id="dsn-toggle-btn"
+          data-tooltip="Buka Sidebar  Ctrl+\\"
+          aria-label="Toggle sidebar">
+    <div class="dsn-toggle-icon"><span></span><span></span><span></span></div>
+  </button>
+  <div class="dsn-items">
+    <a class="dsn-item" href="/index.html">
+      <span class="dsn-item-icon">🏠</span>
+      <span class="dsn-item-label">Kost</span>
+    </a>
+    <a class="dsn-item" href="/page/keuangan.html">
+      <span class="dsn-item-icon">💰</span>
+      <span class="dsn-item-label">Keuangan</span>
+    </a>
+    <a class="dsn-item" href="/page/kontak_penghuni.html">
+      <span class="dsn-item-icon">👥</span>
+      <span class="dsn-item-label">Kontak</span>
+    </a>
+    <a class="dsn-item" href="/page/settings.html">
+      <span class="dsn-item-icon">⚙️</span>
+      <span class="dsn-item-label">Pengaturan</span>
+    </a>
+  </div>
+</nav>
+
+  <nav class="bottom-nav">
+  <a class="nav-item" href="/index.html"><span class="nav-icon">🏠</span><span>Kost</span></a>
+  <a class="nav-item" href="/page/keuangan.html"><span class="nav-icon">💰</span><span>Keuangan</span></a>
+  <a class="nav-item" href="/page/kontak_penghuni.html"><span class="nav-icon">👥</span><span>Kontak</span></a>
+  <a class="nav-item active" href="/page/settings.html"><span class="nav-icon">⚙️</span><span>Pengaturan</span></a>
+</nav>
+
+  <div id="toast" class="toast"></div>
+</body>
+</html>

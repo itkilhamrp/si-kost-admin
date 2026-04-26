@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="stylesheet" href="/css/styles.bundle.min.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <script type="module" src="/main.js"></script>
+  <script type="module">
+    import { initAddKamar } from "/js/pages/add-kamar.js";
+    document.addEventListener("DOMContentLoaded", initAddKamar);
+  </script>
+  <title>Tambah Kamar</title>
+</head>
+<body>
+<header class="app-header">
+  <a href="#" class="back-btn" id="btn-back">←</a>
+  <div class="header-title"><h1>Tambah Kamar</h1></div>
+</header>
+
+<div class="container no-fab">
+  <div class="modern-form">
+
+    <!-- Nomor & Lantai -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)">
+      <div class="input-group" style="margin:0">
+        <label>No / Nama Kamar <span class="req">*</span></label>
+        <input type="text" id="no-kamar" placeholder="A1, 101, Mawar..." autocomplete="off">
+      </div>
+      <div class="input-group" style="margin:0">
+        <label>Lantai <span style="color:var(--text-3)">(opsional)</span></label>
+        <input type="text" id="lantai" placeholder="1, 2, Dasar...">
+      </div>
+    </div>
+
+    <!-- Jenis Kelamin -->
+    <div class="input-group">
+      <label>Jenis Kelamin Penghuni</label>
+      <div class="jk-toggle-group">
+        <button type="button" class="jk-btn active" data-val="Bebas">🌐 Bebas</button>
+        <button type="button" class="jk-btn" data-val="Pria">👨 Pria</button>
+        <button type="button" class="jk-btn" data-val="Wanita">👩 Wanita</button>
+      </div>
+    </div>
+
+    <!-- Kapasitas -->
+    <div class="input-group">
+      <label>Kapasitas <span style="color:var(--text-3)">(max penghuni)</span></label>
+      <div style="display:flex;align-items:center;gap:var(--sp-3)">
+        <button type="button" class="kap-btn" id="kap-minus"
+          onclick="const v=document.getElementById('kapasitas');v.value=Math.max(1,parseInt(v.value)-1)">−</button>
+        <input type="number" id="kapasitas" value="1" min="1" max="20"
+          style="text-align:center;width:64px;flex-shrink:0">
+        <button type="button" class="kap-btn" id="kap-plus"
+          onclick="const v=document.getElementById('kapasitas');v.value=Math.min(20,parseInt(v.value)+1)">+</button>
+        <span style="font-size:.8rem;color:var(--text-3)">orang</span>
+      </div>
+      <p class="form-hint">Lebih dari 1 = konsep patungan / kost bersama</p>
+    </div>
+
+    <!-- Harga & Diskon -->
+    <div class="input-group">
+      <label>Harga per Bulan <span class="req">*</span></label>
+      <div class="harga-prefix">
+        <span>Rp</span>
+        <input type="number" id="harga" placeholder="800000" min="0" step="1000">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Diskon <span style="color:var(--text-3)">(opsional)</span> — <span id="diskon-label" style="color:var(--green);font-weight:600">Tanpa diskon</span></label>
+      <div class="diskon-presets">
+        <button type="button" class="diskon-preset" data-pct="5">5%</button>
+        <button type="button" class="diskon-preset" data-pct="10">10%</button>
+        <button type="button" class="diskon-preset" data-pct="15">15%</button>
+        <button type="button" class="diskon-preset" data-pct="20">20%</button>
+        <button type="button" class="diskon-preset" data-pct="25">25%</button>
+        <button type="button" class="diskon-preset" data-pct="30">30%</button>
+        <button type="button" class="diskon-preset" data-pct="50">50%</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-2);margin-top:var(--sp-2)">
+        <input type="number" id="diskon-val" placeholder="0" min="0" max="90" step="1"
+          style="width:80px" value="0">
+        <span style="font-size:.85rem;color:var(--text-2)">% custom</span>
+      </div>
+      <div id="harga-preview" style="margin-top:var(--sp-2);min-height:24px"></div>
+    </div>
+
+    <!-- Unit/Fasilitas -->
+    <div class="input-group">
+      <label>Unit / Fasilitas <span style="color:var(--text-3)">(opsional)</span></label>
+      <p class="form-hint" style="margin-bottom:6px">Centang fasilitas yang tersedia di kamar ini</p>
+      <div id="unit-grid" class="properti-grid">
+        <p style="font-size:.8rem;color:var(--text-3)">Memuat...</p>
+      </div>
+    </div>
+
+    <!-- Foto -->
+    <div class="input-group">
+      <label>Foto Kamar <span style="color:var(--text-3)">(opsional)</span></label>
+      <div id="image-picker-area" class="image-picker-area" role="button" tabindex="0">
+        <img id="preview-gambar" src="" alt="" class="hidden">
+        <p id="picker-hint">Tap untuk pilih foto</p>
+        <input type="file" id="input-gambar" accept="image/*" class="hidden">
+      </div>
+    </div>
+
+    <button class="save-btn" id="btn-simpan-kamar">Simpan Kamar</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+</body>
+</html>
