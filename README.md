@@ -1,5 +1,3 @@
-# Perbaiki teks markdown di bawah ini:
-
 # 🏠 Si‑LibreKost Admin
 
 Aplikasi manajemen rumah kos **offline‑first** berbasis Tauri v2 + Vanilla Web.  
@@ -48,7 +46,7 @@ langsung dari HP Android maupun desktop Linux/Windows/macOS.
 - **Android SDK & NDK** (hanya untuk build Android)
   - Android SDK Platform 33+
   - NDK 26.1.10909125 atau yang direkomendasikan Tauri
-  - `ANDROID_HOME` environment variable diarahkan ke SDK
+  - Environment variable `ANDROID_HOME` diarahkan ke SDK
 - **Keystore** untuk menandatangani APK (development: `my-release-key.keystore`, password `123456`)
 
 ---
@@ -58,43 +56,50 @@ langsung dari HP Android maupun desktop Linux/Windows/macOS.
 ### 1. Clone & Install Dependensi
 
 ```bash
-git clone https://github.com/username/si-librekost-admin.git
+git clone [https://github.com/username/si-librekost-admin.git](https://github.com/username/si-librekost-admin.git)
 cd si-librekost-admin
 pnpm install
 ```
 
 ### 2. Jalankan di Desktop (Dev Mode)
-bash
+
+```bash
 pnpm tauri dev
 ```
 
 Aplikasi akan terbuka di jendela desktop dengan hot‑reload.
 
 ### 3. Build APK Android
+
 Pastikan Android SDK sudah di‑setup, lalu jalankan:
 
-bash
+```bash
 npm run build-android
 ```
 
-APK yang sudah ditandatangani akan muncul sebagai Si-LibreKost-Admin.apk di root proyek.
+APK yang sudah ditandatangani akan muncul sebagai `Si-LibreKost-Admin.apk` di root proyek.
 
-Catatan: Password keystore yang digunakan adalah 123456 (development).
-Untuk produksi, ganti dengan keystore Anda sendiri dan perbarui script di package.json.
+> **Catatan:** Password keystore yang digunakan adalah `123456` (development). Untuk produksi, ganti dengan keystore Anda sendiri dan perbarui script di `package.json`.
 
-⚙️ Konfigurasi Penting
-File	Fungsi
-src-tauri/tauri.conf.json	Konfigurasi jendela, build, CSP, dll.
-vite.config.js	Build frontend, MPA entry, plugin anti‑flash
-package.json	Script npm, dependensi
-src-tauri/src/lib.rs	Backend Rust: database, perintah, tema
-src-tauri/Cargo.toml	Dependensi Rust & profil rilis
-Warna Latar Jendela (Anti‑Flash Putih)
-Untuk mencegah layar putih sekejap saat navigasi, kami mengatur backgroundColor di
-tauri.conf.json dan menyisipkan script/inline style otomatis melalui plugin Vite.
-Jika Anda mengubah tema, warna latar akan menyesuaikan.
+---
 
-📁 Struktur Proyek
+## ⚙️ Konfigurasi Penting
+
+| File | Fungsi |
+|------|--------|
+| `src-tauri/tauri.conf.json` | Konfigurasi jendela, build, CSP, dll. |
+| `vite.config.js` | Build frontend, MPA entry, plugin anti‑flash |
+| `package.json` | Script npm, dependensi |
+| `src-tauri/src/lib.rs` | Backend Rust: database, perintah, tema |
+| `src-tauri/Cargo.toml` | Dependensi Rust & profil rilis |
+
+### Warna Latar Jendela (Anti‑Flash Putih)
+Untuk mencegah layar putih sekejap saat navigasi, kami mengatur `backgroundColor` di `tauri.conf.json` dan menyisipkan script/inline style otomatis melalui plugin Vite. Jika Anda mengubah tema, warna latar akan menyesuaikan.
+
+---
+
+## 📁 Struktur Proyek
+
 ```text
 si-librekost-admin/
 ├── src/                     # Sumber frontend
@@ -127,53 +132,55 @@ si-librekost-admin/
 ├── README.md
 └── LICENSE
 ```
-🖥️ Penggunaan Aplikasi
-Login
+
+---
+
+## 🖥️ Penggunaan Aplikasi
+
+### Login
 Akun dibuat secara lokal. Saat pertama kali, Anda akan diminta membuat akun admin.
 
-Navigasi
-Sidebar (desktop) atau Bottom Navigation (mobile) untuk berpindah halaman.
+### Navigasi
+Gunakan Sidebar (desktop) atau Bottom Navigation (mobile) untuk berpindah halaman.
+* Halaman utama menampilkan daftar rumah kos.
+* Klik kartu kos untuk melihat detail kamar.
+* Di detail kamar, Anda bisa menambah/edit kamar, melihat penghuni, pembayaran, dll.
 
-Halaman utama menampilkan daftar rumah kos.
+### Manajemen Data
+* Tambah data melalui form di masing‑masing halaman.
+* Hapus data akan memunculkan dialog konfirmasi bergaya material.
+* Cache disimpan untuk mempercepat akses; bisa dihapus dari halaman Pengaturan.
 
-Klik kartu kos untuk melihat detail kamar.
-
-Di detail kamar, Anda bisa menambah/edit kamar, melihat penghuni, pembayaran, dll.
-
-Manajemen Data
-Tambah data melalui form di masing‑masing halaman.
-
-Hapus data akan memunculkan dialog konfirmasi bergaya material.
-
-Cache disimpan untuk mempercepat akses; bisa dihapus dari halaman Pengaturan.
-
-Tema
+### Tema
 Buka Pengaturan, pilih tema: Terang, Gelap, atau Otomatis (mengikuti sistem).
 
-🔧 Troubleshooting
-Elemen rusak atau layout berantakan di Android
-Pastikan file CSS tersalin ke dist/. Jalankan ulang build:
+---
 
-bash
+## 🔧 Troubleshooting
+
+### Elemen rusak atau layout berantakan di Android
+Pastikan file CSS tersalin ke folder `dist/`. Jalankan ulang build:
+
+```bash
 npm run build:frontend
 ```
+Jika masih rusak, hapus folder `dist/` dan build ulang.
 
-Jika masih rusak, hapus folder dist/ dan build ulang.
+### Aplikasi crash saat `pnpm tauri dev`
+Pastikan tidak ada duplikasi pemanggilan `tauri dev` di script `package.json` (sudah diperbaiki dalam versi ini).
 
-Aplikasi crash saat pnpm tauri dev
-Pastikan tidak ada duplikasi pemanggilan tauri dev di script package.json (sudah diperbaiki dalam versi ini).
+### Flash putih saat pindah halaman
+* Pastikan `backgroundColor` di `tauri.conf.json` sudah sesuai dengan tema.
+* Script anti-flash sudah terinjeksi otomatis; jangan hapus plugin `injectAntiFlash` di `vite.config.js`.
 
-Flash putih saat pindah halaman
-Pastikan backgroundColor di tauri.conf.json sudah sesuai dengan tema.
+### Build Android gagal
+* Cek apakah `ANDROID_HOME` dan NDK sudah terinstal dengan benar.
+* Pastikan file `my-release-key.keystore` ada di root proyek, dengan password `123456`.
 
-Script anti-flash sudah terinjeksi otomatis; jangan hapus plugin injectAntiFlash di vite.config.js.
+---
 
-Build Android gagal
-Cek ANDROID_HOME dan NDK terinstal.
+## 📄 Lisensi
 
-Pastikan my-release-key.keystore ada di root proyek, password 123456.
+Proyek ini dilisensikan di bawah **GNU Affero General Public License v3.0**.
 
-📄 Lisensi
-Proyek ini dilisensikan di bawah GNU Affero General Public License v3.0.
-
-Dibangun dengan ❤️ oleh tim SI-KOST
+Dibangun dengan ❤️ oleh **ORANG**
