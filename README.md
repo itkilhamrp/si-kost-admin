@@ -60,7 +60,7 @@ langsung dari HP Android maupun desktop Linux/Windows/macOS.
 
 ```bash
 git clone [https://github.com/username/si-kost-admin.git](https://github.com/username/si-kost-admin.git)
-cd si-librekost-admin
+cd si-kost-admin
 pnpm install
 ```
 
@@ -104,7 +104,7 @@ Untuk mencegah layar putih sekejap saat navigasi, kami mengatur `backgroundColor
 ## 📁 Struktur Proyek
 
 ```text
-si-librekost-admin/
+si-kost-admin/
 ├── src/                     # Sumber frontend
 │   ├── assets/              # Aset statis (favicon, gambar)
 │   ├── css/                 # Stylesheet
