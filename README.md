@@ -1,4 +1,4 @@
-# 🏠 Si‑LibreKost Admin
+# 🏠 Si‑LibreKost-Admin
 
 Aplikasi manajemen rumah kos **offline‑first** berbasis Tauri v2 + Vanilla Web.  
 Dibangun untuk pemilik kos yang ingin mengelola data kamar, penghuni, dan keuangan
@@ -7,6 +7,9 @@ langsung dari HP Android maupun desktop Linux/Windows/macOS.
 ![Tauri](https://img.shields.io/badge/Tauri-2.0-FFC131?logo=tauri)
 ![Rust](https://img.shields.io/badge/Rust-1.77+-DEA584?logo=rust)
 ![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![License](https://img.shields.io/badge/license-AGPL_v3-blue)
 
 ---
@@ -56,7 +59,7 @@ langsung dari HP Android maupun desktop Linux/Windows/macOS.
 ### 1. Clone & Install Dependensi
 
 ```bash
-git clone [https://github.com/username/si-librekost-admin.git](https://github.com/username/si-librekost-admin.git)
+git clone [https://github.com/username/si-kost-admin.git](https://github.com/username/si-kost-admin.git)
 cd si-librekost-admin
 pnpm install
 ```
@@ -183,4 +186,4 @@ Pastikan tidak ada duplikasi pemanggilan `tauri dev` di script `package.json` (s
 
 Proyek ini dilisensikan di bawah **GNU Affero General Public License v3.0**.
 
-Dibangun dengan ❤️ oleh **ORANG**
+Dibangun dengan 🧠 oleh **ORANG**
