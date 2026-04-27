@@ -22,6 +22,7 @@ bcrypt    = "0.15"
 chrono    = { version = "0.4", features = ["serde"] }
 base64     = "0.22"
 tauri-plugin-log = "2.8.0" # Sesuaikan dengan versi tauri v2 Anda
+log = "0.4"
 
 # Optimasi: Mematikan default-features pada crate image jika tidak semua dibutuhkan
 image = { version = "0.25", default-features = false, features = ["jpeg", "png", "gif", "webp", "bmp"] }

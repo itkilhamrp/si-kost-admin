@@ -45,6 +45,9 @@ node_modules/
 dist/
 build/
 
+# Catatan config
+config-ku
+
 # .apk output
 Si-LibreKost-Admin.apk
 Si-LibreKost-Admin.apk.idsig

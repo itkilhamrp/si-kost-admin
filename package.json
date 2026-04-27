@@ -5,24 +5,19 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "dev": "node build-css.cjs && tauri dev",
+    "dev": "tauri dev",
+    "dev:web": "node build-css.cjs && vite",
     "build:css:min": "node build-css.cjs --min",
-    
- 
-    "fix:html-modules": "find src -name \"*.html\" -exec sed -i 's/<script src=\"\\/main.js\">/<script type=\"module\" src=\"\\/main.js\">/g' {} +",
-    
-
-    "build:frontend": "npm run fix:html-modules && npm run build:css:min && vite build",
-    
-
-    "build-android": "npm run build:frontend && npx tauri android build --target aarch64 --apk && $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks my-release-key.keystore --out Si-LibreKost-Admin.apk src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk"
+    "build:frontend": "npm run build:css:min && vite build",
+    "build-android": "npx tauri android build --target aarch64 --apk && $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks my-release-key.keystore --out Si-LibreKost-Admin.apk src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.0",
     "vite": "^6.0.0",
     "terser": "^5.30.0",
     "glob": "^11.0.0",
-    "vite-plugin-minify": "^1.5.0"
+    "vite-plugin-minify": "^1.5.0",
+    "clean-css": "^5.3.3"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

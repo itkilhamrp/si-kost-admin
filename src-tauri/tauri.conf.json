@@ -1,30 +1,30 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "SiLibreKost-Admin",
-  "version": "0.1.7",
+  "version": "0.1.18",
   "identifier": "org.librekost.admin",
   "build": {
     "beforeBuildCommand": "npm run build:frontend",
-    "beforeDevCommand": "npm run dev",
+    "beforeDevCommand": "npm run dev:web",
+    "devUrl": "http://localhost:5173",
     "frontendDist": "../dist"
   },
   "app": {
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "Si-LibreKost Admin",
+        "title": "Si-LibreKost-Admin",
         "width": 800,
         "height": 600,
         "fullscreen": false,
-        "decorations": true
+        "decorations": true,
+        "backgroundColor": "#1e1e2e"
       }
     ],
     "security": {
       "assetProtocol": {
         "enable": true,
-        "scope": [
-          "$APPDATA/**"
-        ]
+        "scope": ["$APPDATA/**"]
       },
       "csp": "default-src 'self' asset: https://asset.localhost tauri:; img-src 'self' asset: https://asset.localhost data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"
     }

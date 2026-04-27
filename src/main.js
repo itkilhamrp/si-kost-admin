@@ -1,37 +1,23 @@
 /**
- * main.js — Entry point global, di-load PERTAMA di <head> tanpa defer.
+ * main.js — Entry point global.
+ * Di-load di <head> tanpa defer/async.
  *
- * HANYA handle tema. Sidebar padding TIDAK dihandle di sini.
- * sidebar-nav.js yang set padding setelah DOM ready.
+ * Hanya set tema (data-theme attribute) untuk cegah FOUC.
+ * Anti-flash background sudah ditangani oleh CSS inline di setiap HTML
+ * yang di-inject otomatis oleh antiFlashPlugin() di vite.config.js.
  */
-(function () {
-  var LS_THEME = "sikost_theme";
-  var mode     = localStorage.getItem(LS_THEME) || "system";
-  var isDark   = mode === "dark" ||
-    (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  document.documentElement.setAttribute("data-theme",      isDark ? "dark" : "light");
-  document.documentElement.setAttribute("data-theme-pref", mode);
+
+// main.js – Hanya untuk sinkronisasi tambahan dengan Rust
+// Tema sudah dijalankan oleh inline script di HTML.
+(async () => {
+  try {
+    const { invoke } = await import('@tauri-apps/api/core');
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (theme) await invoke('set_theme', { theme });
+  } catch (e) {
+    // Bukan environment Tauri (misal browser), abaikan
+  }
 })();
-
-
-
-// window.addEventListener("error", (e) => {
-//   document.body.insertAdjacentHTML("afterbegin",
-//     `<div style="position:fixed;top:0;left:0;right:0;z-index:9999;
-//      background:red;color:#fff;padding:10px;font-size:12px;word-break:break-all">
-//      ERROR: ${e.message}<br>${e.filename}:${e.lineno}
-//      </div>`
-//   );
-// });
-
-// window.addEventListener("unhandledrejection", (e) => {
-//   document.body.insertAdjacentHTML("afterbegin",
-//     `<div style="position:fixed;top:0;left:0;right:0;z-index:9999;
-//      background:orange;color:#000;padding:10px;font-size:12px;word-break:break-all">
-//      PROMISE: ${e.reason}
-//      </div>`
-//   );
-// });
 
 // DEBUG TOUCH — hapus setelah masalah ketemu
 
